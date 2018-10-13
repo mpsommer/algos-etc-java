@@ -1,24 +1,43 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class RemoveDups {
 
-	public static String removeDups(String str) {
-		Map<Character, Integer> map = new HashMap<>();
-		StringBuffer sBuffer = new StringBuffer();
-
-		for (int i = 0; i < str.length(); i++) {
-			if(!map.containsKey(str.charAt(i))) {
-				map.put(str.charAt(i), 1);
-				sBuffer.append(str.charAt(i));
+	public static void removeDups(LinkedList<Integer> list) {
+		HashSet<Integer> hash = new HashSet<>();
+		for (int i = 0; i < list.size(); i++) {
+			int key = list.get(i);
+			if (hash.contains(key)) {
+				list.remove(i);
+				i--;
+			} else {
+				hash.add(key);
 			}
 		}
-		return sBuffer.toString();
 	}
 
+
 	public static void main(String[] args) {
-		String str = "Hello World!";
-		System.out.println(str);
-		str = removeDups(str);
-		System.out.println(str);
+		LinkedList<Integer> list = new LinkedList<>();
+		list.add(5);
+		list.add(2);
+		list.add(3);
+		list.add(2);
+		list.add(5);
+		list.add(4);
+		list.add(4);
+		list.add(5);
+		list.add(5);
+		list.add(5);
+		list.add(5);
+		list.add(7);
+		list.add(5);
+		list.add(88);
+
+		System.out.println(list);
+		removeDups(list);
+		System.out.println(list);
 	}
 }
