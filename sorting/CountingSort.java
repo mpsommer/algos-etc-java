@@ -18,14 +18,20 @@ public class CountingSort{
 		int[] countArr = new int[findMaxValue(arr) + 1];
 		int[] sortedArr = new int[arr.length];
 
+		// Puts the number of input elements equal to i into countArr[i]
 		for (int i = 0; i < arr.length; i++) {
-			int index = arr[i];
-			countArr[index] = countArr[index] + 1;
+			countArr[arr[i]] = countArr[arr[i]] + 1;
 		}
 
+		// Determines for each i = 0, 1, ..., countArr.length how many input
+		// elements are less than or equal to i by keeping a running sum
+		// of the countArr
 		for (int i = 1; i < countArr.length; i++) {
 			countArr[i] = countArr[i] + countArr[i -1];
 		}
+
+		// Places each input element into its correct sorted position in the
+		// sortedArr.
 		for (int i = arr.length - 1; i >= 0; i--) {
 			int arrVal = arr[i];
 			int sortedArrIndex = countArr[arrVal] - 1;
