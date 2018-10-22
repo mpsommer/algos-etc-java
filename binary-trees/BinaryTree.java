@@ -5,7 +5,7 @@ class Node {
 	Node left, right;
 
 	public Node(int item) {
-		 key = item;
+		key = item;
 		left = null;
 		right = null;
 	}
@@ -18,67 +18,63 @@ public class BinaryTree {
 		root = null;
 	}
 
-	static void printPreOrder(Node node) {
-		if (node == null) {
+	public static void printPreOrder(Node node) {
+		if (node == null)
 			return;
-		}
 		System.out.print(node.key + " ");
 		printPreOrder(node.left);
 		printPreOrder(node.right);
 	}
 
-	static void printInOrder(Node node) {
+	public static void printPostOrder(Node node) {
 		if (node == null) {
 			return;
 		}
-
-		printInOrder(node.left);
-		System.out.print(node.key + " ");
-		printInOrder(node.right);
-	}
-
-	static void printPostOrder(Node node) {
-		if (node == null) {
-			return;
-		}
-
 		printPostOrder(node.left);
 		printPostOrder(node.right);
 		System.out.print(node.key + " ");
 	}
 
-	static int getTreeHeight(Node root) {
-		if (root == null || (root.left == null && root.right == null)) {
-			return 0;
+	public static void printInOrder(Node node) {
+		if (node == null) {
+			return;
 		}
-		int lHeight = getTreeHeight(root.left);
-		int rHeight = getTreeHeight(root.right);
-		if (lHeight > rHeight) {
-			return lHeight + 1;
-		}
-		return rHeight + 1;
+		printInOrder(node.left);
+		System.out.print(node.key + " ");
+		printInOrder(node.right);
 	}
 
-	static int getTreeLevels(Node root) {
-		if (root == null) {
+	public static int getTreeHeight(Node node) {
+		if (node == null || (node.left == null && node.right == null)) {
 			return 0;
 		}
-		int lLevel = getTreeLevels(root.left);
-		int rLevel = getTreeLevels(root.right);
-		if (lLevel > rLevel) {
-			return lLevel + 1;
+		int leftHeight = getTreeHeight(node.left);
+		int rightHeight = getTreeHeight(node.right);
+		if (leftHeight > rightHeight) {
+			return leftHeight + 1;
 		}
-		return rLevel + 1;
+		return rightHeight + 1;
 	}
 
-	static void printLevelOrder(Node root) {
-		Queue<Node> queue = new LinkedList<Node>();
+	public static int getTreeLevels(Node node) {
+		if (node == null) {
+			return 0;
+		}
+		int leftHeight = getTreeLevels(node.left);
+		int rightHeight = getTreeLevels(node.right);
+		if (leftHeight > rightHeight) {
+			return leftHeight + 1;
+		}
+		return rightHeight + 1;
+	}
+
+	public static void printLevelOrder(Node root) {
+		Queue<Node> queue = new LinkedList<>();
 		queue.add(root);
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			Node node = queue.remove();
 			System.out.print(node.key + " ");
-
-			if(node.left != null) {
+			if (node.left != null) {
 				queue.add(node.left);
 			}
 			if (node.right != null) {
@@ -87,15 +83,15 @@ public class BinaryTree {
 		}
 	}
 
-	static void printSpiralOrder(Node root) {
-		Queue<Node> queue = new LinkedList<Node>();
+	public static void printSpiralOrder(Node root) {
+		Queue<Node> queue = new LinkedList<>();
 		queue.add(root);
 		int dir = 0;
 		while (!queue.isEmpty()) {
 			Node node = queue.remove();
 			System.out.print(node.key + " ");
-			if(dir % 2 == 0) {
-				if(node.left != null) {
+			if (dir % 2 == 0) {
+				if (node.left != null) {
 					queue.add(node.left);
 				}
 				if (node.right != null) {
@@ -105,28 +101,26 @@ public class BinaryTree {
 				if (node.right != null) {
 					queue.add(node.right);
 				}
-				if(node.left != null) {
+				if (node.left != null) {
 					queue.add(node.left);
 				}
 			}
 			dir++;
 		}
-		
 	}
 
-	public static void printLevel(Node root, int level) {
+	public static void printNodesAtLevel(Node root, int level) {
 		if (root == null) {
 			return;
 		}
 		if (level == 1) {
 			System.out.print(root.key + " ");
-		} 
+		}
 		if (level > 1) {
-			printLevel(root.left, level - 1);
-			printLevel(root.right, level - 1);
+			printNodesAtLevel(root.left, level - 1);
+			printNodesAtLevel(root.right, level - 1);
 		}
 	}
-
 
 	public static void main(String[] args) {
 		BinaryTree tree = new BinaryTree();
@@ -137,23 +131,23 @@ public class BinaryTree {
 		tree.root.left.right = new Node(5);
 
 		System.out.println("preorder traversal: ");
-		printPreOrder(tree.root);
+		printPreOrder(tree.root); // 1 2 4 5 3
 		System.out.println("\ninorder traversal: ");
-		printInOrder(tree.root);
+		printInOrder(tree.root); // 4 2 5 1 3
 		System.out.println("\npostorder traversal: ");
-		printPostOrder(tree.root);
+		printPostOrder(tree.root); // 4 5 2 3 1
 		System.out.println("\nlevelorder traversal: ");
-		printLevelOrder(tree.root);
-		System.out.println("\nTree Levels: " + getTreeLevels(tree.root));
-		System.out.println("Tree height: " + getTreeHeight(tree.root));
-		System.out.println("Tree nodes in level 1: ");
-		printLevel(tree.root, 1);
-		System.out.println("\nTree nodes in level 2: ");
-		printLevel(tree.root, 2);
-		System.out.println("\nTree nodes in level 3: ");
-		printLevel(tree.root, 3);
+		printLevelOrder(tree.root); // 1 2 3 4 5
+		System.out.println("\nTree Levels: " + getTreeLevels(tree.root)); // 3
+		System.out.println("Tree height: " + getTreeHeight(tree.root)); // 2
+		System.out.println("Tree nodes in level 1: "); // 1
+		printNodesAtLevel(tree.root, 1);
+		System.out.println("\nTree nodes in level 2: "); // 2 3 
+		printNodesAtLevel(tree.root, 2);
+		System.out.println("\nTree nodes in level 3: "); // 4 5
+		printNodesAtLevel(tree.root, 3);
 		System.out.println();
-		printSpiralOrder(tree.root);
+		printSpiralOrder(tree.root); //1 2 3 5 4
 		System.out.println();
 	}
 }
