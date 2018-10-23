@@ -6,12 +6,10 @@ public class LinkedList {
 
 	static class Node {
 		Node next = null;
-		int data;
-
+		int val;
 		public Node(int d) {
-			data = d;
+			val = d;
 		}
-
 	}
 
 	void appendToTail(int d) {
@@ -23,17 +21,17 @@ public class LinkedList {
 		n.next = end;
 	}
 
-	Node deleteNode(int data) {
+	Node deleteNode(int val) {
 		Node n = head;
-		// if head is where we find the data.
-		if (n != null && n.data == data ) {
+		// if head is where we find the val.
+		if (n != null && n.val == val ) {
 			head = head.next;
 			return n;
 		}
 
-		// if data is in list but not in head.
+		// if val is in list but not in head.
 		while (n.next != null) {
-			if (n.next.data == data) {
+			if (n.next.val == val) {
 				Node result = n.next;
 				n.next = n.next.next;
 				return result;
@@ -41,17 +39,18 @@ public class LinkedList {
 			n = n.next;
 		}
 
-		// if data is not in list.
+		// if val is not in list.
 		return head;
 	}
 
 	public static void printList(Node node) {
 		while(node != null) {
-			System.out.print(node.data + " ");
+			System.out.print(node.val + " ");
 			node = node.next;
 		}
 		System.out.println();
 	}
+
 
 	public static void printKthLast(Node head, int k) {
 		int count = 0;
@@ -66,7 +65,7 @@ public class LinkedList {
 			node = node.next;
 			count--;
 		}
-		System.out.println(node.data);
+		System.out.println(node.val);
 	}
 
 	public static void main(String[] args) {
@@ -83,7 +82,7 @@ public class LinkedList {
 		list.appendToTail(10);
 
 		Node foo = list.deleteNode(8);
-		System.out.println("foo = " + foo.data);
+		System.out.println("foo = " + foo.val);
 		printList(list.head);
 		System.out.println();
 		printKthLast(list.head, 3);
