@@ -1,19 +1,8 @@
 import java.util.LinkedList;
 
-class Node {
-	int key;
-	Node left, right;
-
-	public Node(int item) {
-		key = item;
-		left = null;
-		right = null;
-	}
-}
-
 public class LCA {
 
-	static int findLCA(Node node, int key1, int key2) {
+	public static int findLCA(Node node, int key1, int key2 ) {
 		LinkedList<Integer> path1 = findPath(node, key1);
 		LinkedList<Integer> path2 = findPath(node, key2);
 
@@ -25,21 +14,18 @@ public class LCA {
 		while (i < path1.size() && i < path2.size() && path1.get(i) == path2.get(i)) {
 			i++;
 		}
-
-		return path1.get(i - 1);
-
+		return path1.get(i-1);
 	}
 
-	static LinkedList<Integer> findPath(Node node, int key) {
-		LinkedList<Integer> path = new LinkedList<Integer>();
+	public static LinkedList<Integer> findPath(Node node, int key) {
+		LinkedList<Integer> path = new LinkedList<>();
 		findPath(node, key, path);
 		return path;
 	}
 
-	static boolean findPath(Node node, int key, LinkedList<Integer> path) {
-		// Ensure Node is not null initially.
+	public static boolean findPath(Node node, int key, LinkedList<Integer> path) {
+		// If innitial node is null;
 		if (node == null) {
-			System.out.println("In here");
 			return false;
 		}
 		path.add(node.key);
@@ -47,6 +33,7 @@ public class LCA {
 		if (node.key == key) {
 			return true;
 		}
+
 		if (node.left != null && findPath(node.left, key, path)) {
 			return true;
 		}
@@ -55,8 +42,8 @@ public class LCA {
 			return true;
 		}
 
-		// If node is not in path, then remove it.
-		path.remove(path.size() - 1);
+		// If no path found
+		path.remove(path.size()-1);
 		return false;
 	}
 
@@ -67,8 +54,8 @@ public class LCA {
 		tree.root.right = new Node(3);
 		tree.root.left.left = new Node(4);
 		tree.root.left.right = new Node(5);
-		// LinkedList<Integer> path1 = findPath(tree.root, 2);
-		// LinkedList<Integer> path2 = findPath(tree.root, 4);
+		LinkedList<Integer> path1 = findPath(tree.root, 2);
+		LinkedList<Integer> path2 = findPath(tree.root, 4);
 		System.out.println(path1);
 		System.out.println(path2);
 		System.out.println(findLCA(tree.root, 2, 4));
