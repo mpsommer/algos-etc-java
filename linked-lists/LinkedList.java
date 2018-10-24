@@ -12,34 +12,44 @@ public class LinkedList {
 		}
 	}
 
+	void appendToHead(int d) {
+		Node front = new Node(d);
+		if (head == null) {
+			head = front;
+		} else {
+			front.next = head;
+			head = front;
+		}
+	}
+
 	void appendToTail(int d) {
 		Node end = new Node(d);
-		Node n = head;
-		while(n.next != null) {
-			n = n.next;
+		if (head == null) {
+			head = end;
+		} else {
+			Node n = head;
+			while(n.next != null) {
+				n = n.next;
+			}
+			n.next = end;
 		}
-		n.next = end;
 	}
 
 	Node deleteNode(int val) {
 		Node n = head;
-		// if head is where we find the val.
-		if (n != null && n.val == val ) {
+		if (n != null && n.val == val) {
 			head = head.next;
 			return n;
 		}
 
-		// if val is in list but not in head.
 		while (n.next != null) {
-			if (n.next.val == val) {
-				Node result = n.next;
+			if (n.next.val == val ) {
+				Node result = n;
 				n.next = n.next.next;
 				return result;
 			}
 			n = n.next;
 		}
-
-		// if val is not in list.
 		return head;
 	}
 
@@ -51,7 +61,6 @@ public class LinkedList {
 		System.out.println();
 	}
 
-
 	public static void printKthLast(Node head, int k) {
 		int count = 0;
 		Node node = head;
@@ -59,18 +68,18 @@ public class LinkedList {
 			count++;
 			node = node.next;
 		}
-		count = count - k;
+
 		node = head;
-		while (count > 0) {
+		count -= k;
+		while (count > 0)  {
 			node = node.next;
 			count--;
 		}
-		System.out.println(node.val);
+		System.out.println("Kth for last element: " + node.val);
 	}
 
 	public static void main(String[] args) {
 		LinkedList list = new LinkedList();
-		list.head = new Node(1);
 		list.appendToTail(2);
 		list.appendToTail(3);
 		list.appendToTail(4);
@@ -80,9 +89,12 @@ public class LinkedList {
 		list.appendToTail(8);
 		list.appendToTail(9);
 		list.appendToTail(10);
+		list.appendToHead(1);
+		list.appendToHead(0);
 
-		Node foo = list.deleteNode(8);
-		System.out.println("foo = " + foo.val);
+		printList(list.head);
+		Node deletedNode = list.deleteNode(8);
+		System.out.println("deletedNode = " + deletedNode.val);
 		printList(list.head);
 		System.out.println();
 		printKthLast(list.head, 3);
