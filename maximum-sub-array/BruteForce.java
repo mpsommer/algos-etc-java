@@ -14,12 +14,13 @@ public class BruteForce {
 					max = maxSoFar;
 					result[0] = i;
 					result[1] = j;
-					result[2] = max;
+					result[2] = max; 
 				}
 			}
 		}
 		return result;
 	}
+
 
 	public static void printArray(int[] arr) {
 		for (int elem: arr) {
