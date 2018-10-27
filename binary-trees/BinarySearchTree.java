@@ -5,7 +5,7 @@ class Node {
 	Node left, right;
 
 	public Node(int item) {
-		 key = item;
+		key = item;
 		left = null;
 		right = null;
 	}
