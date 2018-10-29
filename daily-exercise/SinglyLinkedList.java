@@ -1,5 +1,4 @@
 public class SinglyLinkedList {
-	Node head = null;
-	Node tail = null;
+	ListNode head = null;
 	public SinglyLinkedList() {}
 }
