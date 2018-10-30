@@ -183,15 +183,14 @@ public class RoutineAComplete {
 				}
 			}
 		}
-		System.out.println();
 	}
 
 	public void dfs(GraphNode root, List<Integer> list) {
 		if (root == null) {
 			return;
 		}
-		list.add(root.val);
 		root.visited = true;
+		list.add(root.val);
 		for (GraphNode node: root.edges) {
 			if (node.visited == false) {
 				dfs(node, list);
