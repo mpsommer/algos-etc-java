@@ -97,6 +97,7 @@ public class Driver {
 		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 3));
 
 		//// Sort
+		System.out.println("#### Sort ####");
 		int[] insArr ={3,6,12,9,34,23,1,78};
 		rtA.insertionSort(insArr);
 		printArr(insArr);
