@@ -109,4 +109,80 @@ public class RoutineBComplete {
 			previous = current;
 		}
 	}
+
+	///////////////////////////////////////////
+	////////      Matrix Traversal     ////////
+	///////////////////////////////////////////
+	
+	public void rowTraversal(int[][] M) {
+		for (int i = 0; i < M.length; i++) {
+			for (int j = 0; j < M[i].length; j++) {
+				System.out.print(M[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public void colTraversal(int[][] M) {
+		int rowLength = M.length;
+		int colLength = M[0].length;
+		for (int i = 0; i < colLength; i++) {
+			for (int j = 0; j < rowLength; j++) {
+				System.out.print(M[j][i] + " ");
+			}
+			System.out.println();
+		}
+	}
+
+	public void traverseTopLeftToBottomRight(int[][] M) {
+		int i, j, k;
+		int rowLength = M.length;
+		int colLength = M[0].length;
+		for (k = 0; k < rowLength; k++) {
+			i = k;
+			j = 0;
+			while (i >= 0) {
+				System.out.print(M[i][j] + " ");
+				i--;
+				j++;
+			}
+			System.out.println();
+		}
+		for (k = 1; k < colLength; k++) {
+			i = M.length - 1;
+			j = k;
+			while (j < colLength) {
+				System.out.print(M[i][j] + " ");
+				i--;
+				j++;
+			}
+			System.out.println();
+		}
+	}
+
+	public void traverseTopRightToBottomLeft(int[][] M) {
+		int rowLength = M.length;
+		int colLength = M[0].length;
+		int i, j, k;
+		for (k = 0; k < colLength-1; k++) {
+			i = 0;
+			j = colLength - 1 - k;
+			while (j < colLength) {
+				System.out.print(M[i][j] + " ");
+				i++;
+				j++;
+			}
+			System.out.println();
+		}
+		for (k = 0; k < rowLength; k++) {
+			i = k;
+			j = 0;
+			while (i < rowLength) {
+				System.out.print(M[i][j] + " ");
+				i++;
+				j++;
+			}
+			System.out.println();
+		}
+	}
 }

@@ -9,6 +9,15 @@ public class DriverB {
 		System.out.println();
 	}
 
+	public static void printMatrix(int[][] a) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < a[0].length; j++) {
+				System.out.print(a[i][j] + " ");
+			}
+			System.out.println();
+		}
+	}
+
 	public static void main(String[] args) {
 		RoutineB rtB = new RoutineB();
 		/////     Bellman Ford
@@ -82,5 +91,19 @@ public class DriverB {
 		rtB.IterPostOrder(tree.root, list);
 		System.out.println(list); // 4 5 2 3 1
 
+		/////     Matrix Traversal
+		int[][] m = new int[4][5];
+		for (int i = 0; i < m.length; i++) {
+			for (int j = 0; j <m[i].length; j++)
+			m[i][j] = j;
+		}
+		rtB.rowTraversal(m); // 0 1 2 3 4
+		System.out.println();
+		rtB.colTraversal(m); // 0 1 2 3 4
+		System.out.println();
+		rtB.traverseTopLeftToBottomRight(m);
+		System.out.println();
+		rtB.traverseTopRightToBottomLeft(m);
+		System.out.println();
 	}
 }
