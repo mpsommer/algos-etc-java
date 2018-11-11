@@ -29,4 +29,25 @@ public class RoutineB {
 
 	public void IterPostOrder(Node root, List<Integer> list) {
 	}
+
+	public List<Integer> sumLevelVals(Node root) {
+		List<Integer> result = new LinkedList<>();
+		return result;
+	}
+
+	///////////////////////////////////////////
+	////////      Matrix Traversal     ////////
+	///////////////////////////////////////////
+	
+	public void rowTraversal(int[][] M) {
+	}
+
+	public void colTraversal(int[][] M) {
+	}
+
+	public void traverseTopLeftToBottomRight(int[][] M) {
+	}
+
+	public void traverseTopRightToBottomLeft(int[][] M) {
+	}
 }

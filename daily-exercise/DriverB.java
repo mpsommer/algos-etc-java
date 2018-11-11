@@ -68,11 +68,9 @@ public class DriverB {
 
 		int[] dist = rtB.bellmanFord(graph, 0);
 		System.out.println("#### Bellman-Ford ####");
-		System.out.println("Dist from 0: " + dist[0]); // 0
-		System.out.println("Dist from 1: " + dist[1]); // -1
-		System.out.println("Dist from 2: " + dist[2]); // 2
-		System.out.println("Dist from 3: " + dist[3]); // -2
-		System.out.println("Dist from 4: " + dist[4]); // 1
+		for (int i = 0; i < dist.length; i++) { // 0, -1, 2, -2, 1
+			System.out.println("Dist from " + i + " : " +  dist[i]); // 0
+		}
 
 		System.out.println("#### Binary Trees Iterative ####");
 		BinaryTree tree = new BinaryTree();
@@ -90,6 +88,9 @@ public class DriverB {
 		list = new LinkedList<>();
 		rtB.IterPostOrder(tree.root, list);
 		System.out.println(list); // 4 5 2 3 1
+		List<Integer> res = rtB.sumLevelVals(tree.root);
+		System.out.println(res); // [1, 5, 9]
+		System.out.println();
 
 		/////     Matrix Traversal
 		int[][] m = new int[4][5];
