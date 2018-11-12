@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.LinkedList;
-public class Driver {
+public class DriverA {
 	public static void printArr(int[] arr) {
 		for (int elem: arr) {
 			System.out.print(elem + " ");
