@@ -60,7 +60,7 @@ public class DriverA {
 		rtA.addToFront(1);
 		rtA.addToFront(0);
 		rtA.printList(); // 0 1 2 3 4 5
-		System.out.println(rtA.listLength());
+		System.out.println(rtA.listLength()); // 6
 		rtA.deleteNode(2);
 		rtA.printList(); //0 1 3 4 5
 
@@ -93,8 +93,8 @@ public class DriverA {
 		rtA.dfs(n0, list);
 		System.out.println(list); // 0 1 3 2 4 5
 		int[] bsArr = {1,2,3,4,5,6,7,8,9,10};
-		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 3));
-		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 3));
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 3)); // 2
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 3)); // 2
 
 		//// Sort
 		System.out.println("#### Sort ####");
