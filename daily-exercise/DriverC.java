@@ -36,6 +36,13 @@ public class DriverC {
 		int a[] = { 1, 2, 3 };
 		rtC.heapPermutation(a, a.length);
 
+		///// Dynamic Programing  /////
+		System.out.println("/////     Dynamic Programming     /////");
+		int val[] = new int[] { 60, 100, 120 };
+		int wt[] = new int[] { 1, 2, 3 };
+		int W = 5;
+		int n = val.length;
+		System.out.println(rtC.knapSack(W, wt, val, n));
 
 	}
 }
