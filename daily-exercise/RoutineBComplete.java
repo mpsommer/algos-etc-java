@@ -184,16 +184,14 @@ public class RoutineBComplete {
 	}
 
 	public void traverseTopRightToBottomLeft(int[][] M) {
+		int i, j, k;
 		int rowLength = M.length;
 		int colLength = M[0].length;
-		int i, j, k;
-		for (k = 0; k < colLength-1; k++) {
+		for (k = colLength - 1; k > 0; k--) {
 			i = 0;
-			j = colLength - 1 - k;
+			j = k;
 			while (j < colLength) {
-				System.out.print(M[i][j] + " ");
-				i++;
-				j++;
+				System.out.print(M[i++][j++] + " ");
 			}
 			System.out.println();
 		}
@@ -201,9 +199,7 @@ public class RoutineBComplete {
 			i = k;
 			j = 0;
 			while (i < rowLength) {
-				System.out.print(M[i][j] + " ");
-				i++;
-				j++;
+				System.out.print(M[i++][j++] + " ");
 			}
 			System.out.println();
 		}
