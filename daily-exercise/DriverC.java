@@ -10,7 +10,7 @@ public class DriverC {
 		System.out.println("/////     Greedy     /////");
 		List<List<Integer>> activities = new LinkedList<>();
 		List<Integer> activity;
-		// activity[0] = activity number.
+		// activity[0] = activity start time.
 		// activity[1] = activity end time.
 		activity = Arrays.asList(5, 9);
 		activities.add(activity);
@@ -28,12 +28,20 @@ public class DriverC {
 		List<List<Integer>> list = rtC.maxActivities(activities);
 		for (List<Integer> l : list) {
 			System.out.println(l);
-		}
+		} // [1,2], [3,4], [5,7], [8,9]
 		System.out.println();
 
 		/// String Perm /////
 		System.out.println("/////     String Perm     /////");
 		int a[] = { 1, 2, 3 };
+		/*
+		1 2 3
+		2 1 3
+		2 1 3
+		1 2 3
+		1 2 3
+		2 1 3
+		 */
 		rtC.heapPermutation(a, a.length);
 
 		///// Dynamic Programing  /////

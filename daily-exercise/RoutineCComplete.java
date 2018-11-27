@@ -67,7 +67,6 @@ public class RoutineC {
 				a[0] = a[size - 1];
 				a[size - 1] = temp;
 			}
-
 			// If size is even, swap ith and last
 			// element
 			else {
