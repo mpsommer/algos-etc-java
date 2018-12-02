@@ -52,5 +52,14 @@ public class DriverC {
 		int n = val.length;
 		System.out.println(rtC.knapSack(W, wt, val, n));
 
+		///// Search - rabin-karp  /////
+		System.out.println("/////     Rabin Karp     /////");
+		String text = "TIME is a TIME iTIMEaaaa";
+		String pattern = "TIME";
+		rtC.rabinKarp(text, pattern); // 0, 10, 16
+		text = "AABAACAADAABAABA";
+		pattern = "AABA";
+		rtC.rabinKarp(text, pattern); // 0, 9, 12
+
 	}
 }

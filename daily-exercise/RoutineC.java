@@ -42,6 +42,13 @@ public class RoutineC {
 		return table[n][W];
 	}
 
+	///////////////////////////////////////////
+	////////          Search           ////////
+	///////////////////////////////////////////
+	public void rabinKarp(String text, String pattern) {
+		
+	}
+
 	///// Utilities /////
 	void printArr(int[] arr) {
 		for (int elem : arr) {

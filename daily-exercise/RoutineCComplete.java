@@ -113,6 +113,62 @@ public class RoutineC {
 	}
 
 
+	///////////////////////////////////////////
+	////////          Search           ////////
+	///////////////////////////////////////////
+	public void rabinKarp(String text, String pattern) {
+		int i, j;
+		long patHash = 0;
+		long txtHash = 0;
+		int R = 256; // alphabet length, a radix.
+		int M = pattern.length();
+		int N = text.length();
+		// Large prime
+		long Q = BigInteger.probablePrime(31, new Random()).longValue();
+
+		// precompute R^(M-1) % Q for use in removing leading digit
+		long RM = 1; // R^(M-1) % Q 
+		for (i = 0; i < M - 1; i++) {
+			RM = (R * RM) % Q;
+		}
+
+		// Compute the hash
+		for (j = 0; j < M; j++) {
+			patHash = (R * patHash + pattern.charAt(j)) % Q;
+			txtHash = (R * txtHash + text.charAt(j)) % Q;
+		}
+
+		// Slide the pattern over text one by one 
+		for (i = 0; i <= N - M; i++) {
+
+			// Check the hash values of current window of text 
+			// and pattern. If the hash values match then only 
+			// check for characters on by one.
+			if (patHash == txtHash) {
+				// Check for characters one by one.
+				for (j = 0; j < M; j++) {
+					if (text.charAt(i + j) != pattern.charAt(j)) {
+						break;
+					}
+				}
+				// if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
+				if (j == M) {
+					System.out.println("Pattern found at index " + i);
+				}
+			}
+			// Calculate hash value for next window of text: Remove 
+			// leading digit, add trailing digit 
+			if (i < N - M) {
+				txtHash = (R*(txtHash - text.charAt(i)*RM) + text.charAt(i+M))%Q;
+				// We might get negative value of t, converting it
+				// to positive
+				if (txtHash < 0) {
+					txtHash += Q;
+				}
+			}
+		}
+	}
+
 	///// Utilities /////
 	void printArr(int[] arr) {
 		for (int elem : arr) {
