@@ -11,7 +11,8 @@ Permutations:
  */
 public class RoutineC {
 
-	public RoutineC() {}
+	public RoutineC() {
+	}
 
 	class ListComparator<T extends Comparable<T>> implements Comparator<List<T>> {
 		@Override
@@ -21,7 +22,7 @@ public class RoutineC {
 	}
 
 	///////////////////////////////////////////
-	////////           Greedy          ////////
+	//////// Greedy ////////
 	///////////////////////////////////////////
 	public List<List<Integer>> maxActivities(List<List<Integer>> activities) {
 		List<List<Integer>> result = new LinkedList<>();
@@ -29,24 +30,37 @@ public class RoutineC {
 	}
 
 	///////////////////////////////////////////
-	////////        Permutations       ////////
+	//////// Permutations ////////
 	///////////////////////////////////////////
 	public void heapPermutation(int[] a, int size) {
 	}
 
 	///////////////////////////////////////////
-	////////    Dynamic Programming    ////////
+	//////// Dynamic Programming ////////
 	///////////////////////////////////////////
 	public int knapSack(int W, int wt[], int val[], int n) {
-		int[][] table = new int[n+1][W+1];
+		int[][] table = new int[n + 1][W + 1];
 		return table[n][W];
 	}
 
 	///////////////////////////////////////////
-	////////          Search           ////////
+	//////// Search ///////////////////////////
 	///////////////////////////////////////////
-	public void rabinKarp(String text, String pattern) {
-		
+	public void rabinKarp(char[] text, char[] pattern) {
+	}
+
+	private long recalculateHash(char[] str, int oldIndex, int newIndex, long oldHash, int exponent, int prime) {
+		long newHash = oldHash - str[oldIndex];
+		return newHash;
+	}
+
+	private long createHash(char[] str, int strLen, int prime) {
+		long hash = 0;
+		return hash;
+	}
+
+	private boolean checkEqual(char str1[], int start1, int end1, char str2[], int start2, int end2) {
+		return true;
 	}
 
 	///// Utilities /////

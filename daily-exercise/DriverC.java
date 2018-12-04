@@ -56,10 +56,10 @@ public class DriverC {
 		System.out.println("/////     Rabin Karp     /////");
 		String text = "TIME is a TIME iTIMEaaaa";
 		String pattern = "TIME";
-		rtC.rabinKarp(text, pattern); // 0, 10, 16
+		rtC.rabinKarp(text.toCharArray(), pattern.toCharArray()); // 0, 10, 16
 		text = "AABAACAADAABAABA";
 		pattern = "AABA";
-		rtC.rabinKarp(text, pattern); // 0, 9, 12
+		rtC.rabinKarp(text.toCharArray(), pattern.toCharArray()); // 0, 9, 12
 
 	}
 }

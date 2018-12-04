@@ -116,57 +116,51 @@ public class RoutineC {
 	///////////////////////////////////////////
 	////////          Search           ////////
 	///////////////////////////////////////////
-	public void rabinKarp(String text, String pattern) {
-		int i, j;
-		long patHash = 0;
-		long txtHash = 0;
-		int R = 256; // alphabet length, a radix.
-		int M = pattern.length();
-		int N = text.length();
-		// Large prime
-		long Q = BigInteger.probablePrime(31, new Random()).longValue();
-
-		// precompute R^(M-1) % Q for use in removing leading digit
-		long RM = 1; // R^(M-1) % Q 
-		for (i = 0; i < M - 1; i++) {
-			RM = (R * RM) % Q;
-		}
-
-		// Compute the hash
-		for (j = 0; j < M; j++) {
-			patHash = (R * patHash + pattern.charAt(j)) % Q;
-			txtHash = (R * txtHash + text.charAt(j)) % Q;
-		}
-
-		// Slide the pattern over text one by one 
-		for (i = 0; i <= N - M; i++) {
-
-			// Check the hash values of current window of text 
-			// and pattern. If the hash values match then only 
-			// check for characters on by one.
-			if (patHash == txtHash) {
-				// Check for characters one by one.
-				for (j = 0; j < M; j++) {
-					if (text.charAt(i + j) != pattern.charAt(j)) {
-						break;
-					}
-				}
-				// if p == t and pat[0...M-1] = txt[i, i+1, ...i+M-1]
-				if (j == M) {
-					System.out.println("Pattern found at index " + i);
-				}
+	// https://www.quora.com/What-is-a-rolling-hash-and-when-is-it-useful
+	// https://github.com/mission-peace/interview/blob/master/src/com/interview/string/RabinKarpSearch.java
+	public void rabinKarp(char[] text, char[] pattern) {
+		int pLen = pattern.length;
+		int tLen = text.length;
+		int prime = 101;
+		long patHash = createHash(pattern, pLen, prime);
+		long txtHash = createHash(text, pLen, prime);
+		for (int i = 0; i < tLen - pLen + 1; i++) {
+			if (patHash == txtHash && checkEqual(text, i, i + pLen, pattern, 0, pLen)) {
+				System.out.println("Pattern found at index " + (i));
 			}
-			// Calculate hash value for next window of text: Remove 
-			// leading digit, add trailing digit 
-			if (i < N - M) {
-				txtHash = (R*(txtHash - text.charAt(i)*RM) + text.charAt(i+M))%Q;
-				// We might get negative value of t, converting it
-				// to positive
-				if (txtHash < 0) {
-					txtHash += Q;
-				}
+			if (i < tLen - pLen) {
+				txtHash = recalculateHash(text, i, i + pLen, txtHash, pLen - 1, prime);
 			}
 		}
+	}
+
+	private long recalculateHash(char[] str, int oldIndex, int newIndex, long oldHash, int exponent, int prime) {
+		long newHash = oldHash - str[oldIndex];
+		newHash = newHash / prime;
+		newHash += str[newIndex] * Math.pow(prime, exponent);
+		return newHash;
+	}
+
+	private long createHash(char[] str, int strLen, int prime) {
+		long hash = 0;
+		for (int i = 0; i < strLen; i++) {
+			hash += str[i] * Math.pow(prime, i);
+		}
+		return hash;
+	}
+
+	private boolean checkEqual(char str1[], int start1, int end1, char str2[], int start2, int end2) {
+		if (end1 - start1 != end2 - start2) {
+			return false;
+		}
+		while (start1 < end1 && start2 < end2) {
+			if (str1[start1] != str2[start2]) {
+				return false;
+			}
+			start1++;
+			start2++;
+		}
+		return true;
 	}
 
 	///// Utilities /////
