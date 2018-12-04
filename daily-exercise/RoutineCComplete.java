@@ -119,14 +119,14 @@ public class RoutineC {
 	// https://www.quora.com/What-is-a-rolling-hash-and-when-is-it-useful
 	// https://github.com/mission-peace/interview/blob/master/src/com/interview/string/RabinKarpSearch.java
 	public void rabinKarp(char[] text, char[] pattern) {
-		int pLen = pattern.length;
 		int tLen = text.length;
+		int pLen = pattern.length;
 		int prime = 101;
-		long patHash = createHash(pattern, pLen, prime);
 		long txtHash = createHash(text, pLen, prime);
+		long patHash = createHash(pattern, pLen, prime);
 		for (int i = 0; i < tLen - pLen + 1; i++) {
-			if (patHash == txtHash && checkEqual(text, i, i + pLen, pattern, 0, pLen)) {
-				System.out.println("Pattern found at index " + (i));
+			if (txtHash == patHash && checkEqual(text, i, i + pLen, pattern, 0, pLen)) {
+				System.out.println("Pattern found at index: " + i);
 			}
 			if (i < tLen - pLen) {
 				txtHash = recalculateHash(text, i, i + pLen, txtHash, pLen - 1, prime);
@@ -136,7 +136,7 @@ public class RoutineC {
 
 	private long recalculateHash(char[] str, int oldIndex, int newIndex, long oldHash, int exponent, int prime) {
 		long newHash = oldHash - str[oldIndex];
-		newHash = newHash / prime;
+		newHash /= prime;
 		newHash += str[newIndex] * Math.pow(prime, exponent);
 		return newHash;
 	}
