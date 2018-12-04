@@ -42,7 +42,7 @@ public class DriverC {
 		2 3 1
 		3 2 1
 		 */
-		rtC.heapPermutation(a, a.length);
+		rtC.heapsAlgo(a, a.length);
 
 		///// Dynamic Programing  /////
 		System.out.println("/////     Dynamic Programming     /////");

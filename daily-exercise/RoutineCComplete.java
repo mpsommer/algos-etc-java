@@ -50,7 +50,7 @@ public class RoutineC {
 	///////////////////////////////////////////
 	////////        Permutations       ////////
 	///////////////////////////////////////////
-	public void heapPermutation(int[] a, int size) {
+	public void heapsAlgo(int[] a, int size) {
 		// if size becomes 1 then prints the obtained
 		// permutation
 		if (size == 1) {
@@ -58,7 +58,7 @@ public class RoutineC {
 		}
 
 		for (int i = 0; i < size; i++) {
-			heapPermutation(a, size - 1);
+			heapsAlgo(a, size - 1);
 
 			// if size is odd, swap first and last
 			// element
