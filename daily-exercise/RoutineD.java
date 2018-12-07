@@ -1,0 +1,38 @@
+import java.util.LinkedList;
+import java.util.List;
+public class RoutineD {
+	///////////////////////////////////////////
+	//////// Greedy //////////////////////////
+	///////////////////////////////////////////
+	public void kruskal() {
+	}
+
+	///////////////////////////////////////////
+	//////// Dynamic Programming /////////////
+	///////////////////////////////////////////
+	// longest increasing subsequence
+	public int lis(int[] arr, int n) {
+		return -1;
+	}
+
+	///////////////////////////////////////////
+	//////// Search ///////////////////////////
+	///////////////////////////////////////////
+	// https://www.youtube.com/watch?v=GTJr8OvyEVQ
+	// https://www.youtube.com/watch?v=KG44VoDtsAA
+	// https://github.com/mission-peace/interview/blob/master/src/com/interview/string/SubstringSearch.java
+	public void KMP(char[] text, char[] pattern) {
+	}
+
+	private int[] computeTempArray(char[] pattern) {
+		int[] lps = new int[pattern.length];
+		return lps;
+	}
+
+	///////////////////////////////////////////
+	//////// Matching /////////////////////////
+	///////////////////////////////////////////
+	public void stableMarriage() {
+
+	}
+}
