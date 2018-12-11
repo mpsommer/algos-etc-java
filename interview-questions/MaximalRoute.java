@@ -1,8 +1,13 @@
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.TreeMap;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.Set;
 
 /**
  * Input: List of departure routes that are some distance with a unique key.
@@ -20,47 +25,123 @@ public class MaximalRoute {
 		}
 	}
 
-	public static List<List<Integer>> findMaxRoutes(List<List<Integer>> departRoutes, List<List<Integer>> returnRoutes,
-			int maximalDistance) {
-		List<List<Integer>> maxRoutes = new LinkedList<>();
-		Collections.sort(departRoutes, new ListComparator());
-		Collections.sort(returnRoutes, new ListComparator());
-		System.out.println();
-		System.out.println(departRoutes);
-		System.out.println(returnRoutes);
+	// public static List<List<Integer>> findMaxRoutes(List<List<Integer>> departRoutes, List<List<Integer>> returnRoutes,
+	// 		int maximalDistance) {
+	// 	List<List<Integer>> maxRoutes = new LinkedList<>();
+	// 	Collections.sort(departRoutes, new ListComparator());
+	// 	Collections.sort(returnRoutes, new ListComparator());
+	// 	System.out.println();
+	// 	System.out.println(departRoutes);
+	// 	System.out.println(returnRoutes);
 
-		int i = departRoutes.size() - 1;
-		int j = 0;
-		while (i >= 0 && j < returnRoutes.size()) {
-			int dist = departRoutes.get(i).get(1) + returnRoutes.get(j).get(1);
-			if (dist > maximalDistance) {
-				i--;
-			} else if (dist < maximalDistance) {
-				j++;
-			} else {
-				List<Integer> coord = new LinkedList<>();
-				coord.add(departRoutes.get(i).get(0));
-				coord.add(returnRoutes.get(j).get(0));
-				maxRoutes.add(coord);
-				int x = j + 1;
-				while (x < returnRoutes.size()
-						&& departRoutes.get(i).get(1) + returnRoutes.get(x).get(1) == maximalDistance) {
-					coord = new LinkedList<>();
-					coord.add(departRoutes.get(i).get(0));
-					coord.add(returnRoutes.get(x).get(0));
-					maxRoutes.add(coord);
-					x++;
+	// 	int i = departRoutes.size() - 1;
+	// 	int j = 0;
+	// 	while (i >= 0 && j < returnRoutes.size()) {
+	// 		int dist = departRoutes.get(i).get(1) + returnRoutes.get(j).get(1);
+	// 		if (dist > maximalDistance) {
+	// 			i--;
+	// 		} else if (dist < maximalDistance) {
+	// 			j++;
+	// 		} else {
+	// 			List<Integer> coord = new LinkedList<>();
+	// 			coord.add(departRoutes.get(i).get(0));
+	// 			coord.add(returnRoutes.get(j).get(0));
+	// 			maxRoutes.add(coord);
+	// 			int x = j + 1;
+	// 			while (x < returnRoutes.size()
+	// 					&& departRoutes.get(i).get(1) + returnRoutes.get(x).get(1) == maximalDistance) {
+	// 				coord = new LinkedList<>();
+	// 				coord.add(departRoutes.get(i).get(0));
+	// 				coord.add(returnRoutes.get(x).get(0));
+	// 				maxRoutes.add(coord);
+	// 				x++;
+	// 			}
+	// 			i--;
+	// 		}
+	// 	}
+	// 	return maxRoutes;
+	// }
+
+	public static List<List<Integer>> findMaxRoutes(List<List<Integer>> departRoutes, List<List<Integer>> returnRoutes,
+	int maximalDistance) {
+		List<List<Integer>> maxRoutes = new LinkedList<>();
+		TreeMap<Integer, List<Integer>> returnMap = getTreeMap(returnRoutes);
+		TreeMap<Integer, List<Integer>> departMap = getTreeMap(departRoutes);
+		List<Integer> coord;
+		int closestMax = Integer.MIN_VALUE;
+
+		for (int dKey: departMap.keySet()) {
+			int rKey = maximalDistance - dKey;
+			if (returnMap.containsKey(rKey)) {
+				for (int dVal: departMap.get(dKey)) {
+					for (int rVal: returnMap.get(rKey)) {
+						coord = new LinkedList<>();
+						coord.add(dVal);
+						coord.add(rVal);
+						maxRoutes.add(coord);
+					}
 				}
-				i--;
+			}
+		}
+
+		if (maxRoutes.size() > 0) return maxRoutes;
+		
+		List<Integer> returnKeys = new LinkedList<>();
+		List<Integer> departKeys = new LinkedList<>();
+		for (int dKey: departMap.keySet()) {
+			for (int rKey: returnMap.keySet()) {
+				int dist = dKey + rKey;
+				if (dist < maximalDistance && dist > closestMax) {
+					returnKeys = new LinkedList<>();
+					departKeys = new LinkedList<>();
+					returnKeys.add(rKey);
+					departKeys.add(dKey);
+					closestMax = dist;
+				} else if (dist < maximalDistance && dist == closestMax){
+					returnKeys = new LinkedList<>();
+					departKeys = new LinkedList<>();
+					returnKeys.add(rKey);
+					departKeys.add(dKey);
+				}
+			}
+		}
+
+		for (int dKey: departKeys) {
+			for (int rKey: returnKeys) {
+				for (int dValue: departMap.get(dKey)) {
+					for (int rValue: returnMap.get(rKey)) {
+						coord = new LinkedList<>();
+						coord.add(dValue);
+						coord.add(rValue);
+						maxRoutes.add(coord);
+					}
+				}
 			}
 		}
 		return maxRoutes;
+	}
+	private static TreeMap<Integer, List<Integer>> getTreeMap(List<List<Integer>> routes) {
+		TreeMap<Integer, List<Integer>> map = new TreeMap<>();
+		List<Integer> value;
+		for (List<Integer> route: routes) {
+			if (map.containsKey(route.get(1))) {
+				int key = route.get(1);
+				value = map.get(key);
+				value.add(route.get(0));
+				map.put(key, value);
+			} else {
+				value = new LinkedList<>();
+				value.add(route.get(0));
+				map.put(route.get(1), value);
+			}
+		}
+		return map;
 	}
 
 	public static void main(String[] args) {
 		List<List<Integer>> departRoutes = new LinkedList<>();
 		List<List<Integer>> returnRoutes = new LinkedList<>();
-		int maximalDistance = 4;
+		int maximalDistance = 25;
 		Random rn = new Random();
 		for (int i = 1; i < 8; i++) {
 			List<Integer> route = new LinkedList<>();
