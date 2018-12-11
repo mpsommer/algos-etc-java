@@ -23,51 +23,36 @@ public class MaximalRoute {
 	public static List<List<Integer>> findMaxRoutes(List<List<Integer>> departRoutes, List<List<Integer>> returnRoutes,
 			int maximalDistance) {
 		List<List<Integer>> maxRoutes = new LinkedList<>();
-		Collections.sort(departRoutes, new ListComparator<>());
-		Collections.sort(returnRoutes, new ListComparator<>());
-		List<List<Integer>> closeToOp = new LinkedList<>();
-
-		List<Integer> temp = new LinkedList<>();
-		temp.add(Integer.MIN_VALUE);
-		temp.add(Integer.MIN_VALUE);
-		closeToOp.add(temp);
-		closeToOp.add(temp);
+		Collections.sort(departRoutes, new ListComparator());
+		Collections.sort(returnRoutes, new ListComparator());
 		System.out.println();
 		System.out.println(departRoutes);
 		System.out.println(returnRoutes);
-		System.out.println();
 
 		int i = departRoutes.size() - 1;
 		int j = 0;
-		while (i >= 0) {
-			int depDist = departRoutes.get(i).get(1);
-			int retDist = returnRoutes.get(j).get(1);
-			if (depDist + retDist > maximalDistance) {
+		while (i >= 0 && j < returnRoutes.size()) {
+			int dist = departRoutes.get(i).get(1) + returnRoutes.get(j).get(1);
+			if (dist > maximalDistance) {
 				i--;
-			} else if (depDist + retDist < maximalDistance) {
-				if (closeToOp.get(0).get(1) + closeToOp.get(1).get(1) < depDist + retDist) {
-					closeToOp = new LinkedList<>();
-					closeToOp.add(departRoutes.get(i));
-					closeToOp.add(returnRoutes.get(j));
-				}
+			} else if (dist < maximalDistance) {
 				j++;
-				if (j == returnRoutes.size()) {
-					i--;
-					j = 0;
-				}
 			} else {
 				List<Integer> coord = new LinkedList<>();
 				coord.add(departRoutes.get(i).get(0));
 				coord.add(returnRoutes.get(j).get(0));
 				maxRoutes.add(coord);
+				int x = j + 1;
+				while (x < returnRoutes.size()
+						&& departRoutes.get(i).get(1) + returnRoutes.get(x).get(1) == maximalDistance) {
+					coord = new LinkedList<>();
+					coord.add(departRoutes.get(i).get(0));
+					coord.add(returnRoutes.get(x).get(0));
+					maxRoutes.add(coord);
+					x++;
+				}
 				i--;
 			}
-		}
-		if (maxRoutes.size() < 1) {
-			temp = new LinkedList<>();
-			temp.add(closeToOp.get(0).get(0));
-			temp.add(closeToOp.get(1).get(0));
-			maxRoutes.add(temp);
 		}
 		return maxRoutes;
 	}
@@ -75,7 +60,7 @@ public class MaximalRoute {
 	public static void main(String[] args) {
 		List<List<Integer>> departRoutes = new LinkedList<>();
 		List<List<Integer>> returnRoutes = new LinkedList<>();
-		int maximalDistance = 16;
+		int maximalDistance = 4;
 		Random rn = new Random();
 		for (int i = 1; i < 8; i++) {
 			List<Integer> route = new LinkedList<>();
@@ -86,20 +71,32 @@ public class MaximalRoute {
 
 		// List<Integer> route1 = new LinkedList<>();
 		// route1.add(1);
-		// route1.add(3);
+		// route1.add(8);
 		// departRoutes.add(route1);
 		// List<Integer> route2 = new LinkedList<>();
 		// route2.add(2);
-		// route2.add(5);
+		// route2.add(9);
 		// departRoutes.add(route2);
 		// List<Integer> route3 = new LinkedList<>();
 		// route3.add(3);
-		// route3.add(7);
+		// route3.add(8);
 		// departRoutes.add(route3);
 		// List<Integer> route4 = new LinkedList<>();
 		// route4.add(4);
 		// route4.add(10);
 		// departRoutes.add(route4);
+		// List<Integer> route5 = new LinkedList<>();
+		// route5.add(5);
+		// route5.add(5);
+		// departRoutes.add(route5);
+		// List<Integer> route6 = new LinkedList<>();
+		// route6.add(6);
+		// route6.add(5);
+		// departRoutes.add(route6);
+		// List<Integer> route7 = new LinkedList<>();
+		// route7.add(7);
+		// route7.add(6);
+		// departRoutes.add(route7);
 		System.out.println(departRoutes);
 
 		for (int i = 1; i < 8; i++) {
@@ -109,22 +106,34 @@ public class MaximalRoute {
 			returnRoutes.add(route);
 		}
 
-		// List<Integer> route5 = new LinkedList<>();
-		// route5.add(1);
-		// route5.add(1);
-		// returnRoutes.add(route5);
-		// List<Integer> route6 = new LinkedList<>();
-		// route6.add(2);
-		// route6.add(3);
-		// returnRoutes.add(route6);
-		// List<Integer> route7 = new LinkedList<>();
-		// route7.add(3);
-		// route7.add(4);
-		// returnRoutes.add(route7);
 		// List<Integer> route8 = new LinkedList<>();
-		// route8.add(4);
-		// route8.add(5);
+		// route8.add(1);
+		// route8.add(1);
 		// returnRoutes.add(route8);
+		// List<Integer> route9 = new LinkedList<>();
+		// route9.add(2);
+		// route9.add(4);
+		// returnRoutes.add(route9);
+		// List<Integer> route10 = new LinkedList<>();
+		// route10.add(3);
+		// route10.add(6);
+		// returnRoutes.add(route10);
+		// List<Integer> route11 = new LinkedList<>();
+		// route11.add(4);
+		// route11.add(8);
+		// returnRoutes.add(route11);
+		// List<Integer> route12 = new LinkedList<>();
+		// route12.add(5);
+		// route12.add(8);
+		// returnRoutes.add(route12);
+		// List<Integer> route13 = new LinkedList<>();
+		// route13.add(6);
+		// route13.add(5);
+		// returnRoutes.add(route13);
+		// List<Integer> route14 = new LinkedList<>();
+		// route14.add(7);
+		// route14.add(6);
+		// returnRoutes.add(route14);
 		System.out.println(returnRoutes);
 		List<List<Integer>> routes = findMaxRoutes(departRoutes, returnRoutes, maximalDistance);
 		System.out.println(routes);
