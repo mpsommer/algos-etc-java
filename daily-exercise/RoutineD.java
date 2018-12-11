@@ -1,10 +1,10 @@
 import java.util.LinkedList;
 import java.util.List;
 public class RoutineD {
-	///////////////////////////////////////////
-	//////// Greedy //////////////////////////
-	///////////////////////////////////////////
-	public void kruskal() {
+
+	public String longestCommontPrefix(String[] words, String prefix) {
+		String result  = "";
+		return result;
 	}
 
 	///////////////////////////////////////////
@@ -32,7 +32,15 @@ public class RoutineD {
 	///////////////////////////////////////////
 	//////// Matching /////////////////////////
 	///////////////////////////////////////////
-	public void stableMarriage() {
+	public void stableMarriage(String[] men, String[] women, String[][] mPref, String[][] wPref) {
 
+	}
+
+	private boolean preferNewPartner(String[][] womenPref, String curPartner, String newPartner, int index) {
+		return false;
+	}
+
+	private int getPersonIndex(String str, String[] persons) {
+		return -1;
 	}
 }

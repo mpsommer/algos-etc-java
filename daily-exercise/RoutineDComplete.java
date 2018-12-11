@@ -1,10 +1,20 @@
 import java.util.LinkedList;
 import java.util.List;
 public class RoutineDComplete {
-	///////////////////////////////////////////
-	//////// Greedy //////////////////////////
-	///////////////////////////////////////////
-	public void kruskal() {
+	// https://leetcode.com/articles/implement-trie-prefix-tree/
+	public String longestCommontPrefix(String[] words, String prefix) {
+		Trie trie = new Trie();
+		String result  = "";
+		for (String word: words) {
+			trie.insert(word);
+		}
+		for (int i = 0; i < prefix.length(); i++) {
+			String pre = prefix.substring(i, prefix.length());
+			if (trie.startsWith(pre)) {
+				result = pre;
+			}
+		}
+		return result;
 	}
 
 	///////////////////////////////////////////
@@ -85,7 +95,58 @@ public class RoutineDComplete {
 	///////////////////////////////////////////
 	//////// Matching /////////////////////////
 	///////////////////////////////////////////
-	public void stableMarriage() {
+	// https://www.sanfoundry.com/java-program-gale-shapley-algorithm/
+	public void stableMarriage(String[] men, String[] women, String[][] mPref, String[][] wPref) {
+		int N = mPref.length;
+		int engagedCount = 0;
+		boolean[] menEngaged = new boolean[N];
+		String[] womenPartner = new String[N];
+		int free = 0;
 
+		while (engagedCount < N) {
+			for (int i = 0; i < N; free++) {
+				if (!menEngaged[free]) {
+					break;
+				}
+			}
+
+			for (int i = 0; i < N && !menEngaged[free]; i++) {
+				int index = getPersonIndex(mPref[free][i], women);
+				if (womenPartner[index] == null) {
+					womenPartner[index] = men[free];
+					menEngaged[free] = true;
+					engagedCount++;
+				} else {
+					String currentPartner = womenPartner[index];
+					if (preferNewPartner(wPref, currentPartner, men[free], index)) {
+						womenPartner[index] = men[free];
+						menEngaged[free] = true;
+						menEngaged[getPersonIndex(currentPartner, men)] = false;
+					}
+				}
+			}
+		}
+		System.out.println("Couples are : ");
+		for (int i = 0; i < N; i++)
+		{
+			System.out.println(womenPartner[i] +" "+ women[i]);
+		}
+	}
+
+	private boolean preferNewPartner(String[][] womenPref, String curPartner, String newPartner, int index) {
+		for (int i = 0; i < womenPref.length; i++) {
+			if (womenPref[index][i].equals(newPartner)) return true;
+			if (womenPref[index][i].equals(curPartner)) return false;
+		}
+		return false;
+	}
+
+	private int getPersonIndex(String str, String[] persons) {
+		for (int i = 0; i < persons.length; i++) {
+			if (persons[i].equals(str)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }
