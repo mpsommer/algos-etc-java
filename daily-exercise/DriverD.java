@@ -14,23 +14,29 @@ public class DriverD {
 		System.out.println("///// longest common prefix (trie) /////");
 		String[] words = {"flower", "flow", "flight"};
 		String prefix = "fl";
-		System.out.println();
-
 		System.out.println(rtD.longestCommontPrefix(words, prefix));
+		String[] wordsA = {"integration", "integrate", "integ"};
+		String prefixA = "int";
+		System.out.println(rtD.longestCommontPrefix(wordsA, prefixA));
+		System.out.println();
 		System.out.println("///// longest increasing subsequence /////");
 		int[] arr = {3, 10, 2, 1, 20}; 
-		System.out.println("Length of lis is " + rtD.lis(arr, arr.length));
+		System.out.println("Length of lis is " + rtD.lis(arr, arr.length)); // 3
 		int[] arrA = {3, 2}; 
-		System.out.println("Length of lis is " + rtD.lis(arrA, arrA.length));
+		System.out.println("Length of lis is " + rtD.lis(arrA, arrA.length)); // 1
 		int[] arrB = {50, 3, 10, 7, 40, 80}; 
-		System.out.println("Length of lis is " + rtD.lis(arrB, arrB.length));
+		System.out.println("Length of lis is " + rtD.lis(arrB, arrB.length)); // 4
 		System.out.println();
 
 		System.out.println("///// KMP /////"); 
 		// String str = "abcxabcdabcdabcy";
 		String str = "abcxabcdabcyabcdabcdabcy";
 		String subString = "abcdabcy";
-		rtD.KMP(str.toCharArray(), subString.toCharArray());
+		rtD.KMP(str.toCharArray(), subString.toCharArray()); // 4, 16
+		System.out.println();
+		String txt = "ABABDABACDABABCABAB"; 
+		String pat = "ABABCABAB"; 
+		rtD.KMP(txt.toCharArray(), pat.toCharArray()); // 10
 		System.out.println();
 
 		System.out.println("///// SMP /////");
