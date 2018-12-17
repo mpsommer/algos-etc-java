@@ -62,6 +62,11 @@ public class DriverA {
 		rtA.printList(); // 0 1 2 3 4 5
 		System.out.println(rtA.listLength()); // 6
 		rtA.deleteNode(2);
+		rtA.deleteNode(4);
+		rtA.deleteNode(3);
+		rtA.deleteNode(5);
+		rtA.deleteNode(1);
+		rtA.deleteNode(0);
 		rtA.printList(); //0 1 3 4 5
 
 		//// Search
