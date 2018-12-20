@@ -98,8 +98,26 @@ public class DriverA {
 		rtA.dfs(n0, list);
 		System.out.println(list); // 0 1 3 2 4 5
 		int[] bsArr = {1,2,3,4,5,6,7,8,9,10};
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 1)); // 0
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 2)); // 1
 		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 3)); // 2
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 4)); // 3
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 5)); // 4
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 6)); // 5
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 7)); // 6
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 8)); // 7
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 9)); // 8
+		System.out.println(rtA.recursiveBinarySearch(bsArr, 0, bsArr.length-1, 10)); //9
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 1)); // 0
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 2)); // 1
 		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 3)); // 2
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 4)); // 3
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 5)); // 4
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 6)); // 5
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 7)); // 6
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 8)); // 7
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 9)); // 8
+		System.out.println(rtA.iterativeBinarySearch(bsArr, 0, bsArr.length-1, 10)); // 9
 
 		//// Sort
 		System.out.println("#### Sort ####");
