@@ -118,6 +118,12 @@ public class RoutineC {
 	///////////////////////////////////////////
 	// https://www.quora.com/What-is-a-rolling-hash-and-when-is-it-useful
 	// https://github.com/mission-peace/interview/blob/master/src/com/interview/string/RabinKarpSearch.java
+	/**
+	 * 
+	 * @param text
+	 * @param pattern
+	 * Time complexity: Average case: O(n + m), worst case O(nm). n = text.length m = pattern.length
+	 */
 	public void rabinKarp(char[] text, char[] pattern) {
 		int tLen = text.length;
 		int pLen = pattern.length;
