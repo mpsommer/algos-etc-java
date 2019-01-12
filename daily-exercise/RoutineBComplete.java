@@ -11,6 +11,13 @@ public class RoutineBComplete {
 	///////////////////////////////////////////
 	////////       Shortest path       ////////
 	///////////////////////////////////////////
+	/**
+	 * 
+	 * @param graph
+	 * @param src
+	 * @return
+	 * runtime: O(VE)
+	 */
 	public int[] bellmanFord(Graph graph, int src) {
 		int V = graph.V;
 		int E = graph.E;
@@ -45,6 +52,14 @@ public class RoutineBComplete {
 	///////////////////////////////////////////
 	////////        BinaryTrees        ////////
 	///////////////////////////////////////////
+	/**
+	 * 
+	 * @param root
+	 * @param list
+	 * runtime: O(n)
+	 * root, left, right.
+	 * [1, 2, 4, 5, 3]
+	 */
 	public void IterPreOrder(Node root, List<Integer> list) {
 		if (root == null) return;
 		Stack<Node> stack = new Stack<>();
@@ -61,6 +76,14 @@ public class RoutineBComplete {
 		}
 	}
 
+	/**
+	 * 
+	 * @param root
+	 * @param list
+	 * runtime O(n)
+	 * left, root, right.
+	 * [4, 2, 5, 1, 3]
+	 */
 	public void IterInOrder(Node root, List<Integer> list) {
 		if (root == null) return;
 		Stack<Node> stack = new Stack<>();
@@ -77,6 +100,14 @@ public class RoutineBComplete {
 		}
 	}
 
+	/**
+	 * 
+	 * @param root
+	 * @param list
+	 * runtime: O(n)
+	 * left, right, root.
+	 * [4, 5, 2, 3, 1]
+	 */
 	public void IterPostOrder(Node root, List<Integer> list) {
 		if (root == null) return;
 		Stack<Node> stack = new Stack<>();
@@ -110,6 +141,10 @@ public class RoutineBComplete {
 		}
 	}
 
+	/**
+	 * runtime: O(n)
+	 * [1, 5, 9]
+	 */
 	public List<Integer> sumLevelVals(Node root) {
 		List<Integer> result = new LinkedList<>();
 		Queue<Node> queue = new LinkedList<>();
