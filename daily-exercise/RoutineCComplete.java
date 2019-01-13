@@ -27,6 +27,13 @@ public class RoutineC {
 	///////////////////////////////////////////
 	////////           Greedy          ////////
 	///////////////////////////////////////////
+	/**
+	 * 
+	 * @param activities
+	 * @return
+	 * runtime: O(nlogn)
+	 * [1,2], [3,4], [5,7], [8,9]
+	 */
 	public List<List<Integer>> maxActivities(List<List<Integer>> activities) {
 		List<List<Integer>> result = new LinkedList<>();
 		// Sort activities on the activity end time.
@@ -50,6 +57,18 @@ public class RoutineC {
 	///////////////////////////////////////////
 	////////        Permutations       ////////
 	///////////////////////////////////////////
+	/**
+	 * 
+	 * @param a
+	 * @param size
+	 * runtime: O(n!)
+	 * 1 2 3
+	 * 2 1 3
+	 * 3 1 2
+	 * 1 3 2
+	 * 2 3 1
+	 * 3 2 1
+	 */
 	public void heapsAlgo(int[] a, int size) {
 		// if size becomes 1 then prints the obtained
 		// permutation
@@ -96,6 +115,10 @@ public class RoutineC {
 	///////////////////////////////////////////
 	////////    Dynamic Programming    ////////
 	///////////////////////////////////////////
+	/**
+	 * runtime: O(nW), n = number of items, W = weight capacity of the sack.
+	 * 220
+	 */
 	public int knapSack(int W, int wt[], int val[], int n) {
 		int[][] table = new int[n+1][W+1];
 		for (int i = 0; i <= n; i++) {
