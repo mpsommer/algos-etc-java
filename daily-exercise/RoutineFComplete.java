@@ -1,3 +1,9 @@
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Comparator;
+
 public class RoutineFComplete {
 
 	RoutineFComplete() {}
@@ -80,6 +86,55 @@ public class RoutineFComplete {
 			arr[i] = arr[largest];
 			arr[largest] = temp;
 			heapify(arr, n, largest);
+		}
+	}
+
+	///////////////////////////////////////////
+	///////////// Shortest Paths //////////////
+	///////////////////////////////////////////
+	// https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-in-java-using-priorityqueue/
+
+	public void dijkstra(List<List<Node>> adj, int source) {
+		int V = adj.size();
+		int[] dist = new int[V];
+		Set<Integer> set = new HashSet<Integer>();
+		// Set initial capacity and comparator. Min queue on the edge distances.
+		PriorityQueue<Node> queue = new PriorityQueue<>(V, new Node());
+
+		for (int i = 0; i < V; i++) {
+			dist[i] = Integer.MAX_VALUE;
+		}
+
+		queue.add(new Node(source, 0));
+		dist[source] = 0;
+
+		while(set.size() != V) {
+			int u = queue.remove().node;
+			set.add(u);
+
+			processEdges(adj, dist, set, queue, u);
+		}
+
+		for (int i = 0; i < dist.length; i++) {
+			System.out.println(source + " to " + i + " is " + dist[i]);
+		}
+	}
+
+	private void processEdges(List<List<Node>> adj,int[] dist, Set<Integer> set, PriorityQueue<Node> queue, int u) {
+		int edgeDist = -1;
+		int newDist = -1;
+		for (int i = 0; i < adj.get(u).size(); i++) {
+			Node v = adj.get(u).get(i);
+
+			if (!set.contains(v.node)) {
+				edgeDist = v.dist;
+				newDist = dist[u] + edgeDist;
+
+				if (newDist < dist[v.node]) {
+					dist[v.node] = newDist;
+				}
+				queue.add(new Node(v.node, dist[v.node]));
+			}
 		}
 	}
 }
