@@ -21,6 +21,14 @@ public class RoutineDComplete {
 	//////// Dynamic Programming /////////////
 	///////////////////////////////////////////
 	// longest increasing subsequence
+	/**
+	 * 
+	 * @param arr
+	 * @param n
+	 * @return
+	 * runtime: O(n^2)
+	 * 3, 1, 4
+	 */
 	public int lis(int[] arr, int n) {
 		int[] lis = new int[n];
 		int i, j;
@@ -50,6 +58,12 @@ public class RoutineDComplete {
 	// https://www.youtube.com/watch?v=GTJr8OvyEVQ
 	// https://www.youtube.com/watch?v=KG44VoDtsAA
 	// https://github.com/mission-peace/interview/blob/master/src/com/interview/string/SubstringSearch.java
+	/**
+	 * runtime: O(m + n)
+	 * Found pattern at: 4
+	 * Found pattern at: 16
+	 * Found pattern at: 10
+	 */
 	public void KMP(char[] text, char[] pattern) {
 		int lps[] = computeTempArray(pattern);
 		int i = 0;
@@ -75,7 +89,8 @@ public class RoutineDComplete {
 	private int[] computeTempArray(char[] pattern) {
 		int[] lps = new int[pattern.length];
 		int j = 0;
-		for (int i = 1; i < pattern.length;) {
+		int i = 1;
+		while ( i < pattern.length) {
 			if (pattern[i] == pattern[j]) {
 				lps[i] = j + 1;
 				j++;
@@ -104,7 +119,7 @@ public class RoutineDComplete {
 		int free = 0;
 
 		while (engagedCount < N) {
-			for (int i = 0; i < N; free++) {
+			for (free = 0; free < N; free++) {
 				if (!menEngaged[free]) {
 					break;
 				}
