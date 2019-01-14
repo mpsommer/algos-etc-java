@@ -94,6 +94,17 @@ public class RoutineFComplete {
 	///////////////////////////////////////////
 	// https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-in-java-using-priorityqueue/
 
+	/**
+	 * 
+	 * @param adj
+	 * @param source
+	 * runtime: O(ElogV)
+	 * 0 to 0 is 0
+	 * 0 to 1 is 8
+	 * 0 to 2 is 6
+	 * 0 to 3 is 5
+	 * 0 to 4 is 3
+	 */
 	public void dijkstra(List<List<Node>> adj, int source) {
 		int V = adj.size();
 		int[] dist = new int[V];
