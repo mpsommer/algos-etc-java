@@ -12,6 +12,7 @@ public class RoutineDComplete {
 			String pre = prefix.substring(i, prefix.length());
 			if (trie.startsWith(pre)) {
 				result = pre;
+				return result;
 			}
 		}
 		return result;
