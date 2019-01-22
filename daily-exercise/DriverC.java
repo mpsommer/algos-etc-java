@@ -52,6 +52,12 @@ public class DriverC {
 		int n = val.length;
 		System.out.println(rtC.knapSack(W, wt, val, n));
 
+
+		///// Search sliding window anagrams /////
+		String s = "cbaebabacd";
+		String p = "abc";
+		System.out.println("/////     Sliding window     /////");
+		System.out.println("Found anagrams at: " + rtC.findAnagrams(s, p));
 		///// Search - rabin-karp  /////
 		System.out.println("/////     Rabin Karp     /////");
 		String text = "TIME is a TIME iTIMEaaaa";

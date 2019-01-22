@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Collections;
 import java.util.Stack;
 import java.util.Comparator;
+import java.util.ArrayList;
 
 /*
 https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
@@ -46,6 +47,23 @@ public class RoutineC {
 	///////////////////////////////////////////
 	//////// Search ///////////////////////////
 	///////////////////////////////////////////
+	/**
+	 * 
+	 * @param s
+	 * @param p
+	 * @return
+	 * Illustrates sliding window.
+	 * O(n)
+	 * https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92059/O(n)-Sliding-Window-JAVA-Solution-Extremely-Detailed-Explanation
+	 */
+	public List<Integer> findAnagrams(String s, String p) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+
+		return result;
+	 }
+
+
+
 	public void rabinKarp(char[] text, char[] pattern) {
 	}
 
