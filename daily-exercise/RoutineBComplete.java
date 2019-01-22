@@ -22,10 +22,9 @@ public class RoutineBComplete {
 		int V = graph.V;
 		int E = graph.E;
 		int[] dist = new int[V];
-
-		for (int i = 0; i < V; i++) {
-			dist[i] = Integer.MAX_VALUE;
-		}
+		int[] parent = new int[V];
+		Arrays.fill(parent, -1);
+		Arrays.fill(dist, Integer.MAX_VALUE);
 		dist[src] = 0;
 
 		for (int i = 0; i < V - 1; i++) {
@@ -35,6 +34,7 @@ public class RoutineBComplete {
 				int weight = graph.edge[j].weight;
 				if (dist[u] != Integer.MAX_VALUE && dist[u] + weight < dist[v]) {
 					dist[v] = dist[u] + weight;
+					parent[v] = u;
 				}
 			}
 		}
@@ -46,6 +46,13 @@ public class RoutineBComplete {
 				System.out.println("Negative weight cycle detected");
 			}
 		}
+		int current = 4;
+		LinkedList<Integer> path = new LinkedList<>();
+		while (current != -1) {
+			path.add(0, current);
+			current = parent[current];
+		}
+		System.out.println(src + " to 4: " + path);
 		return dist;
 	}
 
