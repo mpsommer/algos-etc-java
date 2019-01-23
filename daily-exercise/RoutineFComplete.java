@@ -110,7 +110,7 @@ public class RoutineFComplete {
 		int[] dist = new int[V];
 		Set<Integer> set = new HashSet<Integer>();
 		// Set initial capacity and comparator. Min queue on the edge distances.
-		PriorityQueue<Node> queue = new PriorityQueue<>(V, new Node());
+		PriorityQueue<Node> queue = new PriorityQueue<>(V, (a, b) -> a.dist - b.dist);
 
 		for (int i = 0; i < V; i++) {
 			dist[i] = Integer.MAX_VALUE;
@@ -121,6 +121,7 @@ public class RoutineFComplete {
 
 		while(set.size() != V) {
 			int u = queue.remove().node;
+			System.out.println("Adding to set: " + u);
 			set.add(u);
 
 			processEdges(adj, dist, set, queue, u);
