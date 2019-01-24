@@ -61,13 +61,13 @@ public class DriverA {
 		rtA.addToFront(0);
 		rtA.printList(); // 0 1 2 3 4 5
 		System.out.println(rtA.listLength()); // 6
-		rtA.deleteNode(2);
-		rtA.deleteNode(4);
-		rtA.deleteNode(3);
-		rtA.deleteNode(5);
-		rtA.deleteNode(1);
-		rtA.deleteNode(0);
-		rtA.printList(); //0 1 3 4 5
+		System.out.println("Deleted Node 2 and got back " + rtA.deleteNode(2).val);
+		System.out.println("Deleted Node 4 and got back " + rtA.deleteNode(4).val);
+		System.out.println("Deleted Node 3 and got back " + rtA.deleteNode(3).val);
+		System.out.println("Deleted Node 5 and got back " + rtA.deleteNode(5).val);
+		System.out.println("Deleted Node 1 and got back " + rtA.deleteNode(1).val);
+		System.out.println("Deleted Node 0 and got back " + rtA.deleteNode(0).val);
+		// rtA.printList(); //0 1 3 4 5
 
 		//// Search
 		System.out.println("#### Search ####");

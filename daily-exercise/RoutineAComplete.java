@@ -148,7 +148,7 @@ public class RoutineAComplete {
 
 		while (node.next != null) {
 			if (node.next.val == val) {
-				ListNode result = node;
+				ListNode result = node.next;
 				node.next = node.next.next;
 				return result;
 			}
