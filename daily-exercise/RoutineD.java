@@ -1,10 +1,10 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Arrays;
 public class RoutineD {
 
 	public String longestCommontPrefix(String[] words, String prefix) {
-		String result  = "";
-		return result;
+		return "";
 	}
 
 	///////////////////////////////////////////
