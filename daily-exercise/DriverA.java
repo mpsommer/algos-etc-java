@@ -68,6 +68,19 @@ public class DriverA {
 		System.out.println("Deleted Node 1 and got back " + rtA.deleteNode(1).val);
 		System.out.println("Deleted Node 0 and got back " + rtA.deleteNode(0).val);
 		// rtA.printList(); //0 1 3 4 5
+		rtA.addToFront(5);
+		rtA.addToFront(4);
+		rtA.addToFront(3);
+		rtA.addToFront(2);
+		rtA.addToFront(1);
+		rtA.addToFront(0);
+		ListNode node = rtA.reverseList();
+		System.out.print("Reversed list: ");
+		while (node != null) {
+			System.out.print(node.val + " ");
+			node = node.next;
+		}
+		System.out.println();
 
 		//// Search
 		System.out.println("#### Search ####");

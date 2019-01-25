@@ -157,6 +157,18 @@ public class RoutineAComplete {
 		return head;
 	}
 
+	public ListNode reverseList() {
+		ListNode previous = null;
+		ListNode current = head;
+		while(current != null) {
+			ListNode tempNext = current.next;
+			current.next = previous;
+			previous = current;
+			current = tempNext;
+		}
+		return previous;
+	}
+
 	public void printList() {
 		ListNode node = head;
 		while (node != null) {
