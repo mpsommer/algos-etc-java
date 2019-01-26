@@ -58,21 +58,16 @@ public class RoutineAComplete {
 		queue.add(root);
 		int direc = 1;
 		while (!queue.isEmpty()) {
-			Node node = queue.remove();
-			list.add(node.val);
-			if (direc % 2 == 0) {
-				if (node.left != null) {
-					queue.add(node.left);
-				}
-				if (node.right != null) {
-					queue.add(node.right);
-				}
-			} else {
-				if (node.right != null) {
-					queue.add(node.right);
-				}
-				if (node.left != null) {
-					queue.add(node.left);
+			int size = queue.size();
+			for (int i = 0; i < size; i++) {
+				Node node = queue.remove();
+				list.add(node.val);
+				if (direc % 2 == 0) {
+					if (node.left !=null) queue.add(node.left);
+					if (node.right != null) queue.add(node.right);
+				} else {
+					if (node.right != null) queue.add(node.right);
+					if (node.left != null) queue.add(node.left);
 				}
 			}
 			direc++;
