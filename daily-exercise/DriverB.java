@@ -54,7 +54,7 @@ public class DriverB {
 		// add edge 3-2 (or D-C in above figure)
 		graph.edge[5].src = 3;
 		graph.edge[5].dest = 2;
-		graph.edge[5].weight = 5;
+		graph.edge[5].weight = 0;
 
 		// add edge 3-1 (or D-B in above figure)
 		graph.edge[6].src = 3;
@@ -68,7 +68,7 @@ public class DriverB {
 
 		int[] dist = rtB.bellmanFord(graph, 0);
 		System.out.println("#### Bellman-Ford ####");
-		for (int i = 0; i < dist.length; i++) { // 0, -1, 2, -2, 1
+		for (int i = 0; i < dist.length; i++) { // 0, -1, -2, -2, 1
 			System.out.println("Dist from " + i + " : " +  dist[i]); // 0
 		}
 
