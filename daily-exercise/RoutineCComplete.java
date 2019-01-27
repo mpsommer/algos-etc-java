@@ -136,6 +136,22 @@ public class RoutineC {
 		return table[n][W];
 	}
 
+	public void printKnapSackItems(int W, int[] wt, int[] val, int n, int[][] table) {
+		int i = n;
+		int j = W;
+		System.out.print("Weights to pick: " );
+		while (j > 0 && i > 0) {
+			if (table[i][j] == table[i - 1][j]) {
+				i--;
+			} else {
+				System.out.print(wt[i - 1] + " ");
+				j = j - wt[i - 1];
+				i--;
+			}
+		}
+		System.out.println();
+	}
+
 
 	///////////////////////////////////////////
 	////////          Search           ////////
