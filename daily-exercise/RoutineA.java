@@ -2,6 +2,7 @@ import java.util.Queue;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Collections;
+import java.util.Arrays;
 public class RoutineA {
 
 	// TODO: heaps, rabin-karp djikstra, other famous algos.
@@ -49,6 +50,10 @@ public class RoutineA {
 
 	public ListNode deleteNode(int val) {
 		return new ListNode(-1);
+	}
+	public ListNode reverseList() {
+		ListNode previous = null;
+		return previous;
 	}
 
 	public void printList() {
