@@ -44,6 +44,7 @@ public class DriverF {
 		adj.get(0).add(new Node(2, 6));
 		adj.get(0).add(new Node(3, 5));
 		adj.get(0).add(new Node(4, 3));
+		adj.get(4).add(new Node(3, 1));
 		adj.get(2).add(new Node(1, 2));
 		adj.get(2).add(new Node(3, 4));
 		// 0 to 0 is 0
