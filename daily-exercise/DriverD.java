@@ -12,9 +12,13 @@ public class DriverD {
 	public static void main(String[] args) {
 		RoutineD rtD = new RoutineD();
 		System.out.println("///// longest common prefix (trie) /////");
-		String[] words = {"flower", "flow", "flight"};
-		String prefix = "fl";
-		System.out.println(rtD.longestCommontPrefix(words, prefix));
+		String[] words = {"flower", "flow", "flowht"};
+		String[] countries = {"samoa", "senegal", "serbia", "seychelles", 
+							  "singapore", "slovakia", "slovenia", "somalia", 
+							  "spain", "sudan", "suriname", "swaziland", "sweden",
+							  "switzerland", "syria"};
+		String prefix = "flower";
+		System.out.println(rtD.longestCommontPrefix(countries, prefix));
 		String[] wordsA = {"integration", "integrate", "integ"};
 		String prefixA = "int";
 		System.out.println(rtD.longestCommontPrefix(wordsA, prefixA));
