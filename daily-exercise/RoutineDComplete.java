@@ -1,23 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
 public class RoutineDComplete {
-	// https://leetcode.com/articles/implement-trie-prefix-tree/
-	public String longestCommontPrefix(String[] words, String prefix) {
-		Trie trie = new Trie();
-		String result  = "";
-		for (String word: words) {
-			trie.insert(word);
-		}
-		for (int i = 0; i < prefix.length(); i++) {
-			String pre = prefix.substring(i, prefix.length());
-			if (trie.startsWith(pre)) {
-				result = pre;
-				return result;
-			}
-		}
-		return result;
-	}
-
 	///////////////////////////////////////////
 	//////// Dynamic Programming /////////////
 	///////////////////////////////////////////

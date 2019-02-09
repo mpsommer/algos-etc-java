@@ -3,10 +3,6 @@ import java.util.List;
 import java.util.Arrays;
 public class RoutineD {
 
-	public String longestCommontPrefix(String[] words, String prefix) {
-		return "";
-	}
-
 	///////////////////////////////////////////
 	//////// Dynamic Programming /////////////
 	///////////////////////////////////////////
