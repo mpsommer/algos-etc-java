@@ -6,7 +6,6 @@ import java.util.LinkedList;
 public class TrieComplete {
 
 	private TrieNode root;
-	static int index;
 
 	public TrieComplete() {
 		root = new TrieNode();
@@ -15,7 +14,7 @@ public class TrieComplete {
 	// Inserts a word into a Trie.
 	public void insert(String word) {
 		TrieNode node = root;
-		for (char c : word.toCharArray()) {
+		for (char c: word.toCharArray()) {
 			if (!node.containsKey(c)) {
 				node.put(c);
 			}
@@ -28,7 +27,7 @@ public class TrieComplete {
 	// return the node where search ends.
 	private TrieNode searchPrefix(String word) {
 		TrieNode node = root;
-		for (char c : word.toCharArray()) {
+		for (char c: word.toCharArray()) {
 			if (node.containsKey(c)) {
 				node = node.get(c);
 			} else {
@@ -38,31 +37,62 @@ public class TrieComplete {
 		return node;
 	}
 
-	public List<String> bfsAutoComplete(String prefix) {
-		List<String> words = new LinkedList<>();
-		if (prefix.length() == 0)
-			return words;
+	// Returns true if the word is in the Trie
+	public boolean containsWord(String word) {
+		TrieNode node = searchPrefix(word);
+		return node != null && node.isEnd();
+	}
+
+	public boolean containsPrefix(String prefix) {
+		TrieNode node = searchPrefix(prefix);
+		return node != null;
+	}
+
+	public String longestCommonPrefix() {
 		StringBuilder sb = new StringBuilder();
 		TrieNode node = root;
-
-		// build prefix string first;
-		int i = 0;
-		char c;
-		while (node != null && i < prefix.length()) {
-			c = prefix.charAt(i);
-			if (node.containsKey(c)) {
-				sb.append(c);
-				node = node.get(c);
-			} else {
-				// If prefix does not exist int trie
-				return words;
+		int count = 0;
+		char charToAdd = ' ';
+		do {
+			count = 0;
+			for (int i = 0; i < node.R; i++) {
+				char c = (char)('a' + i);
+				if (node.get(c) != null) {
+					charToAdd = c;
+					count++;
+				}
 			}
-			i++;
+			if (count == 1) {
+				sb.append(charToAdd);
+				node = node.get(charToAdd);
+			} else {
+				return sb.toString();
+			}
+		} while (count == 1 && !node.isEnd());
+		return sb.toString();
+	}
+
+	public List<String> bfsAutoComplete(String prefix) {
+		List<String> words = new LinkedList<>();
+		if (prefix == null || prefix.length() == 0) return words;
+		StringBuilder sb = new StringBuilder();
+		TrieNode node = root;
+		char c;
+		
+		// Build prefix string and position node correctly.
+		for (int i = 0; node != null && i < prefix.length(); i++) {
+			c = prefix.charAt(i);
+			if (!node.containsKey(c)) {
+				// Prefix not found in trie.
+				return words;
+			} 
+			sb.append(c);
+			node = node.get(c);
 		}
-		// bfs
+
+		// bfs for words stemming from prefix.
 		Queue<TrieNode> nodeQueue = new LinkedList<>();
 		Queue<StringBuilder> wordQueue = new LinkedList<>();
-
 		nodeQueue.add(node);
 		wordQueue.add(sb);
 		while (!nodeQueue.isEmpty()) {
@@ -71,13 +101,15 @@ public class TrieComplete {
 			if (u.isEnd()) {
 				words.add(word.toString());
 			}
-			for (i = 0; i < u.R; i++) {
-				TrieNode v = u.links[i];
+
+			for (int i = 0; i < u.R; i++) {
+				c = (char)('a' + i);
+				TrieNode v = u.get(c);
 				if (v != null) {
-					StringBuilder next = new StringBuilder(word);
-					next.append((char) ('a' + i));
+					StringBuilder newWord = new StringBuilder(word);
+					newWord.append(c);
 					nodeQueue.add(v);
-					wordQueue.add(next);
+					wordQueue.add(newWord);
 				}
 			}
 		}
@@ -86,75 +118,41 @@ public class TrieComplete {
 
 	public List<String> dfsAutoComplete(String prefix) {
 		List<String> words = new LinkedList<>();
-		if (prefix.length() == 0)
-			return words;
+		if (prefix == null || prefix.length() == 0) return words;
 		StringBuilder sb = new StringBuilder();
 		TrieNode node = root;
-
-		// build prefix string first;
-		int i = 0;
-		char c;
-		while (node != null && i < prefix.length()) {
-			c = prefix.charAt(i);
-			if (node.containsKey(c)) {
-				sb.append(c);
-				node = node.get(c);
-			} else {
-				// If prefix does not exist int trie
-				return words;
-			}
-			i++;
+		for (int i = 0; node != null && i < prefix.length(); i++) {
+			char c = prefix.charAt(i);
+			if (!node.containsKey(c)) return words;
+			sb.append(c);
+			node = node.get(c);
 		}
+
 		dfs(node, words, sb);
 		return words;
 	}
 
-	public void dfs(TrieNode node, List<String> wordList, StringBuilder chars) {
+	public void dfs(TrieNode node, List<String> words, StringBuilder sb) {
 		if (node.isEnd()) {
-			StringBuilder sb = new StringBuilder(chars);
-			wordList.add(sb.toString());
+			words.add(sb.toString());
+			if (getNumLinks(node) == 0) return;
 		}
-		if (node.isEnd() && getNumLinks(node) == 0) {
-			return;
-		}
+
 		for (int i = 0; i < node.R; i++) {
-			char v = (char) (i + 'a');
+			char v = (char)('a' + i);
 			if (node.containsKey(v)) {
-				chars.append(v);
-				dfs(node.get(v), wordList, chars);
-				chars.deleteCharAt(chars.length() - 1);
+				sb.append(v);
+				dfs(node.get(v), words, sb);
+				sb.deleteCharAt(sb.length() - 1);
 			}
 		}
-	}
 
-
-	// Returns true if the word is in the Trie
-	public boolean search(String word) {
-		TrieNode node = searchPrefix(word);
-		return node != null && node.isEnd();
-	}
-
-	public boolean startsWith(String prefix) {
-		TrieNode node = searchPrefix(prefix);
-		return node != null;
-	}
-
-	public String longestCommonPrefix() {
-		StringBuilder sb = new StringBuilder();
-		TrieNode node = root;
-		while (getNumLinks(node) == 1 && !node.isEnd()) {
-			sb.append((char) ('a' + index));
-			node = node.links[index];
-
-		}
-		return sb.toString();
 	}
 
 	private int getNumLinks(TrieNode node) {
 		int count = 0;
-		for (int i = 0; i < node.links.length; i++) {
-			if (node.links[i] != null) {
-				index = i;
+		for (int i = 0; i < node.R; i++) {
+			if (node.get((char)('a' + i)) != null) {
 				count++;
 			}
 		}
@@ -170,23 +168,23 @@ public class TrieComplete {
 			links = new TrieNode[R];
 		}
 
-		public boolean containsKey(char c) {
+		boolean containsKey(char c) {
 			return links[c - 'a'] != null;
 		}
 
-		public TrieNode get(char c) {
-			return links[c - 'a'];
-		}
-
-		public void put(char c) {
+		void put(char c) {
 			links[c - 'a'] = new TrieNode();
 		}
 
-		public boolean isEnd() {
+		TrieNode get(char c) {
+			return links[c - 'a'];
+		}
+
+		boolean isEnd() {
 			return isEnd;
 		}
 
-		public void setEnd() {
+		void setEnd() {
 			isEnd = true;
 		}
 	}

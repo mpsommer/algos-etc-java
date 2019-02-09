@@ -3,10 +3,10 @@ import java.util.Queue;
 import java.util.List;
 import java.util.LinkedList;
 
-public class RoutineE {
+public class RoutineEComplete {
 	private Trie trie;
 
-	public RoutineE() {}
+	public RoutineEComplete() {}
 
 	public void buildTrie(String[] words) {
 		trie = new Trie();

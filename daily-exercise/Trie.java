@@ -1,3 +1,8 @@
+import java.lang.StringBuilder;
+import java.util.List;
+import java.util.Queue;
+import java.util.LinkedList;
+
 public class Trie {
 
 	private TrieNode root;
@@ -17,12 +22,16 @@ public class Trie {
 	}
 
 	// Returns true if the word is in the Trie
-	public boolean search(String word) {
+	public boolean containsWord(String word) {
 		return false;
 	}
 
-	public boolean startsWith(String prefix) {
+	public boolean containsPrefix(String prefix) {
 		return false;
+	}
+
+	public String longestCommonPrefix() {
+		return "";
 	}
 
 	public List<String> bfsAutoComplete(String prefix) {
@@ -35,9 +44,7 @@ public class Trie {
 		return words;
 	}
 
-	public String longestCommonPrefix() {
-		StringBuilder sb = new StringBuilder();
-		return sb.toString();
+	public void dfs(TrieNode node, List<String> words, StringBuilder sb) {
 	}
 
 	private int getNumLinks(TrieNode node) {
