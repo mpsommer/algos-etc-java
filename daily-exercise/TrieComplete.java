@@ -128,20 +128,6 @@ public class TrieComplete {
 	}
 
 
-	private TrieNode getLongestPrefixNode(String word) {
-		TrieNode node = root;
-		TrieNode previous = root;
-		for (char c : word.toCharArray()) {
-			if (node.containsKey(c)) {
-				previous = node;
-				node = node.get(c);
-			} else {
-				return previous;
-			}
-		}
-		return node;
-	}
-
 	// Returns true if the word is in the Trie
 	public boolean search(String word) {
 		TrieNode node = searchPrefix(word);
