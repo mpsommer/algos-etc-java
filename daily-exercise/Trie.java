@@ -25,6 +25,26 @@ public class Trie {
 		return false;
 	}
 
+	public List<String> bfsAutoComplete(String prefix) {
+		List<String> words = new LinkedList<>();
+		return words;
+	}
+
+	public List<String> dfsAutoComplete(String prefix) {
+		List<String> words = new LinkedList<>();
+		return words;
+	}
+
+	public String longestCommonPrefix() {
+		StringBuilder sb = new StringBuilder();
+		return sb.toString();
+	}
+
+	private int getNumLinks(TrieNode node) {
+		int count = 0;
+		return count;
+	}
+
 	class TrieNode {
 	}
 }
