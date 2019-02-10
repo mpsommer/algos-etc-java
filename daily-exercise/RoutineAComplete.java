@@ -2,6 +2,7 @@ import java.util.Queue;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Collections;
+import java.util.Random;
 public class RoutineAComplete {
 
 	// TODO: heaps, rabin-karp djikstra, other famous algos.
@@ -301,6 +302,9 @@ public class RoutineAComplete {
 	}
 
 	private int partition(int[] arr, int low, int high) {
+		Random rand = new Random(); 
+		int value = rand.nextInt((high - low) + 1) + low;
+		swap(arr, value, high);
 		int pivot = arr[high];
 		int lessThan = low - 1;
 
