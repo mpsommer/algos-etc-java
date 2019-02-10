@@ -15,16 +15,6 @@ public class RoutineC {
 	public RoutineC() {
 	}
 
-	class ListComparator<T extends Comparable<T>> implements Comparator<List<T>> {
-		/**
-		 * Compares the second element of a list of length 2.
-		 */
-		@Override
-		public int compare(List<T> list1, List<T> list2) {
-			return list1.get(1).compareTo(list2.get(1));
-		}
-	}
-
 	///////////////////////////////////////////
 	////////           Greedy          ////////
 	///////////////////////////////////////////
@@ -38,7 +28,7 @@ public class RoutineC {
 	public List<List<Integer>> maxActivities(List<List<Integer>> activities) {
 		List<List<Integer>> result = new LinkedList<>();
 		// Sort activities on the activity end time.
-		Collections.sort(activities, new ListComparator<>());
+		Collections.sort(activities, (a, b) -> a.get(1) - b.get(1));
 		// Add the first activity.
 		result.add(activities.get(0));
 		// Get finish time of first activity.
@@ -138,18 +128,14 @@ public class RoutineC {
 
 	public void printKnapSackItems(int W, int[] wt, int[] val, int n, int[][] table) {
 		int i = n;
-		int j = W;
-		System.out.print("Weights to pick: " );
-		while (j > 0 && i > 0) {
-			if (table[i][j] == table[i - 1][j]) {
-				i--;
-			} else {
-				System.out.print(wt[i - 1] + " ");
-				j = j - wt[i - 1];
-				i--;
+		int w = W;
+		while (i > 0 && w > 0) {
+			if (table[i][w] != table[i - 1][w]) {
+				System.out.println("item: " + wt[i - 1]);
+				w = w - wt[i - 1];
 			}
+			i--;
 		}
-		System.out.println();
 	}
 
 
