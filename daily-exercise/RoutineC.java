@@ -15,13 +15,6 @@ public class RoutineC {
 	public RoutineC() {
 	}
 
-	class ListComparator<T extends Comparable<T>> implements Comparator<List<T>> {
-		@Override
-		public int compare(List<T> list1, List<T> list2) {
-			return list1.get(1).compareTo(list2.get(1));
-		}
-	}
-
 	///////////////////////////////////////////
 	//////// Greedy ////////
 	///////////////////////////////////////////
@@ -42,6 +35,10 @@ public class RoutineC {
 	public int knapSack(int W, int wt[], int val[], int n) {
 		int[][] table = new int[n + 1][W + 1];
 		return table[n][W];
+	}
+
+	public void printKnapSackItems(int W, int[] wt, int[] val, int n, int[][] table) {
+
 	}
 
 	///////////////////////////////////////////
