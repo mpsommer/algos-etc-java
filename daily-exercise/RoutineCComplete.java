@@ -10,9 +10,9 @@ import java.util.ArrayList;
 https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 Permutations: 
  */
-public class RoutineC {
+public class RoutineCComplete {
 
-	public RoutineC() {
+	public RoutineCComplete() {
 	}
 
 	///////////////////////////////////////////
