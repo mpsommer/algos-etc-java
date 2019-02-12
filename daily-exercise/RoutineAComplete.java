@@ -1,7 +1,6 @@
 import java.util.Queue;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.Collections;
 import java.util.Random;
 public class RoutineAComplete {
 

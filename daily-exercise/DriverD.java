@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.LinkedList;
-
 public class DriverD {
 
 	static void printArr(int[] arr) {
