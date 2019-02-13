@@ -2,20 +2,20 @@
 class Node {
 	public int node;
 	public int dist;
-	int val;
-	Node left, right;
+	public int val;
+	public Node left, right;
+	public Node next;
 
 	public Node() {}
 
-	public Node(int item) {
-		val = item;
-		left = null;
-		right = null;
+	// For binary trees and linked lists.
+	public Node(int val) {
+		this.val = val;
 	}
 
-	// Used for dijkstra in routineF
-	public Node(int node, int dist) {
-		this.node = node;
+	// For Djikstra
+	public Node(int val, int dist) {
+		this.val = val;
 		this.dist = dist;
 	}
 }
