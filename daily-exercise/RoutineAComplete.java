@@ -6,7 +6,7 @@ public class RoutineAComplete {
 
 	// TODO: heaps, rabin-karp djikstra, other famous algos.
 
-	ListNode head;
+	Node head;
 	RoutineAComplete() {}
 	///////////////////////////////////////////
 	////////        BinaryTrees        ////////
@@ -115,7 +115,7 @@ public class RoutineAComplete {
 	////////     SinglyLinkedLists     ////////
 	///////////////////////////////////////////
 	public void addToFront(int val) {
-		ListNode node = new ListNode(val);
+		Node node = new Node(val);
 		if (head == null) {
 			head = node;
 		} else {
@@ -125,7 +125,7 @@ public class RoutineAComplete {
 	}
 
 	public int listLength() {
-		ListNode node = head;
+		Node node = head;
 		int count = 0;
 		while(node != null) {
 			count++;
@@ -134,8 +134,8 @@ public class RoutineAComplete {
 		return count;
 	}
 
-	public ListNode deleteNode(int val) {
-		ListNode node = head;
+	public Node deleteNode(int val) {
+		Node node = head;
 		if (head != null && head.val == val) {
 			head = head.next;
 			return node;
@@ -143,7 +143,7 @@ public class RoutineAComplete {
 
 		while (node.next != null) {
 			if (node.next.val == val) {
-				ListNode result = node.next;
+				Node result = node.next;
 				node.next = node.next.next;
 				return result;
 			}
@@ -152,11 +152,11 @@ public class RoutineAComplete {
 		return head;
 	}
 
-	public ListNode reverseList() {
-		ListNode previous = null;
-		ListNode current = head;
+	public Node reverseList() {
+		Node previous = null;
+		Node current = head;
 		while(current != null) {
-			ListNode tempNext = current.next;
+			Node tempNext = current.next;
 			current.next = previous;
 			previous = current;
 			current = tempNext;
@@ -165,7 +165,7 @@ public class RoutineAComplete {
 	}
 
 	public void printList() {
-		ListNode node = head;
+		Node node = head;
 		while (node != null) {
 			System.out.print(node.val + " ");
 			node = node.next;

@@ -8,7 +8,7 @@ public class RoutineA {
 
 	// TODO: heaps, rabin-karp djikstra, other famous algos.
 
-	ListNode head;
+	Node head;
 	RoutineA() {}
 	///////////////////////////////////////////
 	////////        BinaryTrees        ////////
@@ -49,16 +49,16 @@ public class RoutineA {
 		return -1;
 	}
 
-	public ListNode deleteNode(int val) {
-		return new ListNode(-1);
+	public Node deleteNode(int val) {
+		return new Node(-1);
 	}
-	public ListNode reverseList() {
-		ListNode previous = null;
+	public Node reverseList() {
+		Node previous = null;
 		return previous;
 	}
 
 	public void printList() {
-		ListNode node = head;
+		Node node = head;
 		while (node != null) {
 			System.out.print(node.val + " ");
 			node = node.next;

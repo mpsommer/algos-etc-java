@@ -74,7 +74,7 @@ public class DriverA {
 		rtA.addToFront(2);
 		rtA.addToFront(1);
 		rtA.addToFront(0);
-		ListNode node = rtA.reverseList();
+		Node node = rtA.reverseList();
 		System.out.print("Reversed list: ");
 		while (node != null) {
 			System.out.print(node.val + " ");
