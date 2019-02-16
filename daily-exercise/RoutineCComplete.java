@@ -223,6 +223,8 @@ public class RoutineCComplete {
 	 * @param text
 	 * @param pattern
 	 * Time complexity: Average case: O(n + m), worst case O(nm). n = text.length m = pattern.length
+	 * 0, 10, 16
+	 * 0, 9, 12
 	 */
 	public void rabinKarp(char[] text, char[] pattern) {
 		int tLen = text.length;
