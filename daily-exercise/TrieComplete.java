@@ -80,7 +80,7 @@ public class TrieComplete {
 		char c;
 		
 		// Build prefix string and position node correctly.
-		for (int i = 0; node != null && i < prefix.length(); i++) {
+		for (int i = 0; i < prefix.length(); i++) {
 			c = prefix.charAt(i);
 			if (!node.containsKey(c)) {
 				// Prefix not found in trie.
@@ -121,7 +121,7 @@ public class TrieComplete {
 		if (prefix == null || prefix.length() == 0) return words;
 		StringBuilder sb = new StringBuilder();
 		TrieNode node = root;
-		for (int i = 0; node != null && i < prefix.length(); i++) {
+		for (int i = 0; i < prefix.length(); i++) {
 			char c = prefix.charAt(i);
 			if (!node.containsKey(c)) return words;
 			sb.append(c);
