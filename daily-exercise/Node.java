@@ -14,8 +14,8 @@ class Node {
 	}
 
 	// For Djikstra
-	public Node(int val, int dist) {
-		this.val = val;
+	public Node(int node, int dist) {
+		this.node = node;
 		this.dist = dist;
 	}
 }
