@@ -39,7 +39,7 @@ public class RoutineF {
 	///////////// Shortest Paths //////////////
 	///////////////////////////////////////////
 	// https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-in-java-using-priorityqueue/
-	public void dijkstra(List<List<Node>> adj, int source) {
+	public void dijkstra(List<List<Node>> adj, int source, int dest) {
 	}
 
 	private void processEdges(List<List<Node>> adj,int[] dist, Set<Integer> set, PriorityQueue<Node> queue, int u) {

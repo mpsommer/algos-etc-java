@@ -46,12 +46,13 @@ public class DriverF {
 		adj.get(4).add(new Node(3, 1));
 		adj.get(2).add(new Node(1, 2));
 		adj.get(2).add(new Node(3, 4));
-		// 0 to 0 is 0
-		// 0 to 1 is 8
-		// 0 to 2 is 6
-		// 0 to 3 is 5
-		// 0 to 4 is 3
-		rtF.dijkstra(adj, 0);
+		// Dist from 0 to 0: 0
+		// Dist from 0 to 1: 8
+		// Dist from 0 to 2: 6
+		// Dist from 0 to 3: 4
+		// Dist from 0 to 4: 3
+		// Path from 0 to 3: [0, 4, 3]
+		rtF.dijkstra(adj, 0, 3);
 
 	}
 }

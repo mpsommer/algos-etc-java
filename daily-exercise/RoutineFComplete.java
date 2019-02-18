@@ -104,31 +104,43 @@ public class RoutineFComplete {
 	 * 0 to 3 is 5
 	 * 0 to 4 is 3
 	 */
-	public void dijkstra(List<List<Node>> adj, int source) {
+	public void dijkstra(List<List<Node>> adj, int source, int dest) {
 		int V = adj.size();
 		int[] dist = new int[V];
-		Set<Integer> set = new HashSet<Integer>();
-		// Set initial capacity and comparator. Min queue on the edge distances.
-		PriorityQueue<Node> queue = new PriorityQueue<>(V, (a, b) -> a.dist - b.dist);
-
-		for (int i = 0; i < V; i++) {
-			dist[i] = Integer.MAX_VALUE;
-		}
-
-		queue.add(new Node(source, 0));
+		int[] parent = new int[V];
+		Arrays.fill(dist, Integer.MAX_VALUE);
+		Arrays.fill(parent, -1);
+		PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> a.dist - b.dist);
+		HashSet<Integer> set = new HashSet<>();
 		dist[source] = 0;
+		queue.add(new Node(source, dist[source]));
 
-		while(set.size() != V) {
+		while (set.size() != V) {
 			int u = queue.remove().node;
-			System.out.println("Adding to set: " + u);
 			set.add(u);
 
-			processEdges(adj, dist, set, queue, u);
+			for (int i = 0; i < adj.get(u).size(); i++) {
+				Node v = adj.get(u).get(i);
+				if (!set.contains(v.node)) {
+					if (dist[u] + v.dist < dist[v.node]) {
+						dist[v.node] = dist[u] + v.dist;
+						parent[v.node] = u;
+					}
+					queue.add(new Node(v.node, dist[v.node]));
+				}
+			}
+		}
+		for (int i = 0; i < dist.length; i++) {
+			System.out.println("Dist from " + source + " to " + i + ": " + dist[i]);
 		}
 
-		for (int i = 0; i < dist.length; i++) {
-			System.out.println(source + " to " + i + " is " + dist[i]);
+		int current = dest;
+		List<Integer> path = new LinkedList<>();
+		while (current != -1) {
+			path.add(0, current);
+			current = parent[current];
 		}
+		System.out.println("Path from " + source + " to " + dest + ": " + path);
 	}
 
 	private void processEdges(List<List<Node>> adj,int[] dist, Set<Integer> set, PriorityQueue<Node> queue, int u) {
