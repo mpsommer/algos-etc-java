@@ -24,14 +24,17 @@ public class DriverF {
 		// 1 - 2: 3
 		// 0 - 3: 6
 		// 1 - 4: 5
-		// rtF.prims(graph);
+		System.out.println("///// Prims /////");
+		rtF.prims(graph);
 
 		// Sorting
 		int[] arr = {12, 11, 13, 5, 6, 7};
+		System.out.println("///// heapsort /////");
 		rtF.heapSort(arr);
-		// printArr(arr);
+		printArr(arr);
 
 		// Shortest Path
+		System.out.println("///// Djikstra/////");
 		List<List<Node>> adj = new ArrayList<List<Node>>();
 		// Initialize list for every node
 		for (int i = 0; i < 5; i++) {
