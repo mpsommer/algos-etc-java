@@ -41,4 +41,55 @@ public class RoutineGComplete {
 			arr[i] = output[i];
 		}
 	}
+
+	///////////////////////////////////////////
+	////////   Dynaminc Programming    ////////
+	///////////////////////////////////////////
+	/**
+	 *
+	 * 6765
+	 */
+	public int fibRecursive(int n) {
+		if (n <= 1) return n;
+		return fibRecursive(n - 1) + fibRecursive(n - 2);
+	}
+
+	/**
+	 * 6765
+	 */
+	public int fibTopDown(int n) {
+		return fibTopDown(n, new int[n + 1]);
+	}
+
+	private int fibTopDown(int n, int[] memo) {
+		if (n <= 1) return n;
+		if (memo[n] == 0) {
+			memo[n] = fibTopDown(n -1, memo) + fibTopDown(n - 2, memo);
+		}
+		return memo[n];
+	}
+
+	public int fibBottomUp(int n) {
+		if (n <= 1) return n;
+		int[] memo = new int[n + 1];
+		memo[0] = 0;
+		memo[1] = 1;
+		for (int i = 2; i <= n; i++) {
+			memo[i] = memo[i - 1] + memo[i - 2];
+		}
+		return memo[n];
+	}
+
+	public int fibOptimal(int n) {
+		if (n <= 1) return n;
+		int a = 0;
+		int b = 1;
+		int c = 0;
+		for (int i = 2; i <= n; i++) {
+			c = a + b;
+			a = b;
+			b = c;
+		}
+		return c;
+	}
 }
