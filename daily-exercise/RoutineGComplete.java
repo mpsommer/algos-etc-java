@@ -92,4 +92,36 @@ public class RoutineGComplete {
 		}
 		return c;
 	}
+
+	public int quickSelect(int[] arr, int low, int high, int k) {
+		while (low <= high) {
+			int mid = partition(arr, low, high);
+			if (mid == k - 1) return mid;
+			if (mid < k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+		return -1;
+	}
+
+	public int partition(int[] arr, int low, int high) {
+		int pivot = arr[high];
+		int i  = low;
+		for (int j = low; j < high; j++) {
+			if (arr[j] <= pivot) {
+				swap(arr, i, j);
+				i++;
+			}
+		}
+		swap(arr, i, high);
+		return i;
+	}
+	 
+	public void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
 }
