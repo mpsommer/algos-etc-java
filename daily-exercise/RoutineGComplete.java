@@ -1,6 +1,6 @@
 import java.util.Arrays;
 public class RoutineGComplete {
-	public RoutineComplete() {}
+	public RoutineGComplete() {}
 
 	///////////////////////////////////////////
 	////////          Sorting          ////////
