@@ -1,6 +1,5 @@
 
 class Node {
-	public int node;
 	public int dist;
 	public int val;
 	public Node left, right;
@@ -14,8 +13,8 @@ class Node {
 	}
 
 	// For Djikstra
-	public Node(int node, int dist) {
-		this.node = node;
+	public Node(int val, int dist) {
+		this.val = val;
 		this.dist = dist;
 	}
 }

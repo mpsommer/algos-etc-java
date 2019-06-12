@@ -2,6 +2,8 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 public class RoutineFComplete {
 
@@ -116,17 +118,17 @@ public class RoutineFComplete {
 		queue.add(new Node(source, dist[source]));
 
 		while (set.size() != V) {
-			int u = queue.remove().node;
+			int u = queue.remove().val;
 			set.add(u);
 
 			for (int i = 0; i < adj.get(u).size(); i++) {
 				Node v = adj.get(u).get(i);
-				if (!set.contains(v.node)) {
-					if (dist[u] + v.dist < dist[v.node]) {
-						dist[v.node] = dist[u] + v.dist;
-						parent[v.node] = u;
+				if (!set.contains(v.val)) {
+					if (dist[u] + v.dist < dist[v.val]) {
+						dist[v.val] = dist[u] + v.dist;
+						parent[v.val] = u;
 					}
-					queue.add(new Node(v.node, dist[v.node]));
+					queue.add(new Node(v.val, dist[v.val]));
 				}
 			}
 		}
@@ -141,23 +143,5 @@ public class RoutineFComplete {
 			current = parent[current];
 		}
 		System.out.println("Path from " + source + " to " + dest + ": " + path);
-	}
-
-	private void processEdges(List<List<Node>> adj,int[] dist, Set<Integer> set, PriorityQueue<Node> queue, int u) {
-		int edgeDist = -1;
-		int newDist = -1;
-		for (int i = 0; i < adj.get(u).size(); i++) {
-			Node v = adj.get(u).get(i);
-
-			if (!set.contains(v.node)) {
-				edgeDist = v.dist;
-				newDist = dist[u] + edgeDist;
-
-				if (newDist < dist[v.node]) {
-					dist[v.node] = newDist;
-				}
-				queue.add(new Node(v.node, dist[v.node]));
-			}
-		}
 	}
 }
